@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      .accordion {
+        background-color: #ffffff;
+        color: #444;
+        cursor: pointer;
+        padding: 3px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+        transition: 0.4s;
+      }
+
+      .line {
+        height: 0px;
+        border: 2px #eceaef solid;
+        margin: 5px;
+        width: 200px;
+      }
+
+      .accordion > div {
+        width: 100%;
+        padding: 5px;
+        display: flex;
+      }
+
+      .active,
+      .accordion:hover {
+        background-color: #dddddd;
+        border-radius: 5px 5px 0px 0px;
+      }
+
+      .panel {
+        padding: 0 18px;
+        display: none;
+        background-color: white;
+        overflow: hidden;
+        border: 1px solid #cccccc;
+        margin-bottom: 5px;
+      }
+
+      .aname {
+        font-size: 12px;
+        width: 65px;
+      }
+
+      .ratingred {
+        width: 50px;
+        height: 0px;
+        border: 3px #cf2c31 solid;
+        position: relative;
+        right: -135px;
+        margin-top: 4px;
+        top: -7px;
+      }
+
+      .ratinggreen {
+        width: 50px;
+        height: 0px;
+        border: 3px #2aa383 solid;
+        position: relative;
+        right: -5px;
+        margin-top: 4px;
+        top: -7px;
+      }
+
+      .ratingyellow {
+        width: 50px;
+        height: 0px;
+        border: 3px #e2a335 solid;
+        position: relative;
+        right: -67px;
+        margin-top: 4px;
+        top: -7px;
+      }
+
+      .tab {
+        display: flex;
+        margin-bottom: 30px;
+        margin-top: 15px;
+      }
+
+      .tab button {
+        border: none;
+        background: none;
+        width: 49%;
+        border-bottom: 1px solid #cccccc;
+        display: inline-block;
+      }
+
+      .tab button.active {
+        border-bottom: 2px solid #5b5bd6;
+        font-weight: 600;
+      }
+
+      /* 		.tabcontent {
+			display: none;
+			padding: 6px 12px;
+			border-top: none;
+			overflow: auto;
+			height: 365px;
+			font-size: 12px;
+		}
+ */
+      .inner-circle {
+        color: #ffffff;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        background-color: #218367;
+        text-align: center;
+        padding: 10px;
+        font-size: 12px;
+      }
+
+      .outer-circle {
+        display: inline-block;
+        border-radius: 50%;
+        width: 70px;
+        height: 70px;
+        background-color: #57ba9f;
+        padding: 10px;
+      }
+
+      .heading {
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      .refreshbtn {
+        background-color: #222;
+        color: #ffffff;
+        padding: 5px;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+
+      .refreshbtn:hover {
+        opacity: 0.6;
+      }
+
+      /* width */
+      ::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #bec4c4;
+      }
+
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div style="display: flex; padding: 10px">
+      <div class="heading">Email score</div>
+      <div id="refreshscore" style="position: absolute; right: 10px">
+        <button class="refreshbtn">Refresh score</button>
+      </div>
+    </div>
+    <div style="text-align: center">
+      <div id="outer-circle" class="outer-circle">
+        <div id="inner-circle" class="inner-circle">
+          <div id="overall-score" style="font-size: 20px; font-weight: 600">
+            0
+          </div>
+          <div id="score-grade">Good</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab">
+      <button class="tablinks active" id="scoretab">Overview</button>
+      <button class="tablinks" id="aitab">
+        AI mail &nbsp;
+        <sup
+          ><strong><i>Coming Soon</i></strong></sup
+        >
+      </button>
+    </div>
+
+    <div id="aimail" class="tabcontent"></div>
+
+    <div id="score" class="tabcontent" style="display: block">
+      <div style="margin-top: -20px">
+        <span style="right: 200px; position: absolute">Good</span>
+        <span style="right: 120px; position: absolute">Moderate</span>
+        <span style="right: 70px; position: absolute">Poor</span>
+      </div>
+      <button class="accordion" style="margin-top: 20px">
+        <div>
+          <div style="display: inline-flex; max-width: 32%">
+            <span class="aname">Subject</span>
+          </div>
+          <div class="line">
+            <div id="subject-score" class=""></div>
+          </div>
+        </div>
+      </button>
+      <div class="panel">
+        <p id="subject-text"></p>
+      </div>
+      <button class="accordion">
+        <div>
+          <div style="display: inline-flex; max-width: 32%">
+            <span class="aname">Word Count</span>
+          </div>
+          <div class="line">
+            <div id="word-count" class=""></div>
+          </div>
+        </div>
+      </button>
+      <div class="panel">
+        <p id="wordcount-text"></p>
+      </div>
+      <button class="accordion">
+        <div>
+          <div style="display: inline-flex; max-width: 32%">
+            <span class="aname">Grade Level</span>
+          </div>
+          <div class="line">
+            <div id="grade-level" class=""></div>
+          </div>
+        </div>
+      </button>
+      <div class="panel">
+        <p id="gradelevel-text"></p>
+      </div>
+      <button class="accordion">
+        <div>
+          <div style="display: inline-flex; max-width: 32%">
+            <span class="aname">Clarity</span>
+          </div>
+          <div class="line">
+            <div id="clarity-score" class=""></div>
+          </div>
+        </div>
+      </button>
+      <div class="panel">
+        <p id="clarity-text"></p>
+      </div>
+
+      <button class="accordion">
+        <div>
+          <div style="display: inline-flex; max-width: 32%">
+            <span class="aname">Read time</span>
+          </div>
+          <div class="line">
+            <div id="rt-score" class=""></div>
+          </div>
+        </div>
+      </button>
+      <div class="panel">
+        <p id="rt-text"></p>
+      </div>
+
+      <button class="accordion">
+        <div>
+          <div style="display: inline-flex; max-width: 32%">
+            <span class="aname">Tone</span>
+          </div>
+          <div class="line">
+            <div id="tone-score" class=""></div>
+          </div>
+        </div>
+      </button>
+      <div class="panel">
+        <p id="tone-text"></p>
+      </div>
+
+      <button class="accordion">
+        <div>
+          <div style="display: inline-flex; max-width: 32%">
+            <span class="aname">Actionables</span>
+          </div>
+          <div class="line">
+            <div id="actionable-score" class=""></div>
+          </div>
+        </div>
+      </button>
+      <div class="panel">
+        <p id="actionable-text"></p>
+      </div>
+
+      <button class="accordion">
+        <div>
+          <div style="display: inline-flex; max-width: 32%">
+            <span class="aname">You/Me Ratio</span>
+          </div>
+          <div class="line">
+            <div id="youme-score" class=""></div>
+          </div>
+        </div>
+      </button>
+      <div class="panel">
+        <p id="youme-text"></p>
+      </div>
+
+      <button class="accordion">
+        <div>
+          <div style="display: inline-flex; max-width: 32%">
+            <span class="aname">Duplicate words</span>
+          </div>
+          <div class="line">
+            <div id="dw-score" class=""></div>
+          </div>
+        </div>
+      </button>
+      <div class="panel">
+        <p id="dw-text"></p>
+      </div>
+
+      <button class="accordion">
+        <div>
+          <div style="display: inline-flex; max-width: 32%">
+            <span class="aname">Spam Words </span>
+          </div>
+          <div class="line">
+            <div id="spam-score" class=""></div>
+          </div>
+        </div>
+      </button>
+      <div class="panel">
+        <p id="spam-text"></p>
+      </div>
+
+      <button class="accordion">
+        <div>
+          <div style="display: inline-flex; max-width: 32%">
+            <span class="aname">Power Words </span>
+          </div>
+          <div class="line">
+            <div id="power-score" class=""></div>
+          </div>
+        </div>
+      </button>
+      <div class="panel">
+        <p id="power-text"></p>
+      </div>
+
+      <button class="accordion">
+        <div>
+          <div style="display: inline-flex; max-width: 32%">
+            <span class="aname">Personalise</span>
+          </div>
+          <div class="line">
+            <div id="personal-score" class=""></div>
+          </div>
+        </div>
+      </button>
+      <div class="panel">
+        <p id="personal-text"></p>
+      </div>
+
+      <button class="accordion">
+        <div>
+          <div style="display: inline-flex; max-width: 32%">
+            <span class="aname">Mobile Optimization</span>
+          </div>
+          <div class="line">
+            <div id="mobile-score" class=""></div>
+          </div>
+        </div>
+      </button>
+      <div class="panel">
+        <p id="mobile-text"></p>
+      </div>
+
+      <button class="accordion">
+        <div>
+          <div style="display: inline-flex; max-width: 32%">
+            <span class="aname">P. S. Mention</span>
+          </div>
+          <div class="line">
+            <div id="ps-score" class=""></div>
+          </div>
+        </div>
+      </button>
+      <div class="panel">
+        <p id="ps-text"></p>
+      </div>
+    </div>
+
+    <!-- <script>
+
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+</script>
+ -->
+
+    <!-- <script>
+ 
+//document.getElementById("score").style.display = "block";
+function openTab(evt, tabName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script> -->
+  </body>
+</html>

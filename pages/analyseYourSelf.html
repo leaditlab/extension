@@ -1,0 +1,761 @@
+<style>
+  .main-item {
+    background-color: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    height: 75.6vh;
+    position: relative;
+  }
+
+  label {
+    font-size: 14px !important;
+    color: #050e15 !important;
+    font-family: "Manrope", sans-serif !important;
+    margin: 5px !important;
+  }
+  input[type="radio"] + label:hover,
+  input[type="radio"]:checked + label:hover,
+  input[type="checkbox"] + label:hover,
+  input[type="checkbox"]:checked + label:hover {
+    color: black !important;
+    background-color: #f0f0f0;
+  }
+  input[type="checkbox"]:not(:checked):hover + label,
+  input[type="radio"]:not(:checked):hover + label {
+    color: #050e15 !important;
+  }
+  #analyseContainer h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: "Manrope", sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 0.005em;
+    color: #050e15;
+  }
+
+  button#submitAnswersBtn,
+  button#submitCompany {
+    margin-top: 20px;
+    padding: 6px 8px;
+    transition: background-color 250ms;
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+    font-family: "Manrope", sans-serif;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.16) 0%,
+        rgba(255, 255, 255, 0) 100%
+      ),
+      #0d4e60;
+    box-shadow: 0px 1px 2px rgba(14, 18, 27, 0.24), 0px 0px 0px 1px #0d4e60;
+    border-radius: 6px;
+  }
+
+  button#submitAnswersBtn:hover {
+    opacity: 0.8;
+  }
+  .next-q {
+    margin-top: 20px;
+    margin-right: 10px;
+    transition: background-color 250ms;
+    color: #0d4e60;
+    font-size: 14px;
+    cursor: pointer;
+    font-family: "Manrope", sans-serif;
+    padding: 4px 8px 4px 16px;
+    gap: 4px;
+    background: #dfeff7;
+    box-shadow: 0px 1px 3px rgba(14, 18, 27, 0.12), 0px 0px 0px 1px #b5d6e7;
+    border-radius: 4px;
+  }
+  .w80 {
+    width: 80%;
+  }
+  .back-q {
+    margin-top: 20px;
+    margin-right: 10px;
+    padding: 6px 8px;
+    font-size: 14px;
+    cursor: pointer;
+    font-family: "Manrope", sans-serif;
+    color: #cacfd8;
+    /* background-color: rgb(223, 239, 247); */
+    cursor: pointer;
+    border-radius: 6px;
+  }
+  .next-q:hover {
+    opacity: 0.8;
+  }
+  .button-row {
+    display: flex;
+    justify-content: end;
+    margin-top: 20px;
+    gap: 10px;
+  }
+  .button-row-2 {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 10px;
+  }
+  .back-q:hover {
+    color: #0e121b;
+    /* background: rgb(13, 78, 96); */
+  }
+  input[type="checkbox"],
+  input[type="radio"] {
+    margin-right: 6px;
+    transform: scale(1.2);
+    accent-color: #1b1c1d;
+    cursor: pointer;
+    margin-top: 5px !important;
+    box-shadow: 0px 2px 2px rgba(27, 28, 29, 0.12);
+  }
+  input[type="checkbox"]:checked + label,
+  input[type="radio"]:checked + label {
+    font-style: normal;
+    font-weight: 400 !important;
+
+    line-height: 20px;
+    letter-spacing: -0.006em;
+    font-feature-settings: "calt" off, "liga" off;
+
+    font-size: 14px !important;
+    color: #050e15 !important;
+    font-family: "Manrope", sans-serif !important;
+  }
+
+  input[type="checkbox"] + label:before,
+  input[type="radio"] + label:before {
+    height: 16px !important;
+    left: 5px !important;
+    top: 4px !important;
+    width: 16px !important;
+    box-shadow: none !important;
+  }
+  input[type="checkbox"] + label:after {
+    height: 14px !important;
+    left: 5px !important;
+    top: 4px !important;
+    width: 14px !important;
+  }
+
+  input[type="radio"] + label:after {
+    height: 14px !important;
+    left: 6px !important;
+    top: 5px !important;
+    width: 14px !important;
+    background-color: rgb(13, 78, 96) !important;
+  }
+  input[type="radio"]:checked + label:after,
+  input[type="radio"]:checked + label:focus {
+    background-color: rgb(13, 78, 96) !important;
+  }
+  input[type="checkbox"]:checked + label:before {
+    outline: none !important;
+  }
+  input[type="checkbox"]:not(:checked) + label,
+  input[type="radio"]:not(:checked) + label {
+    color: #292e30 !important;
+  }
+  input[type="checkbox"]:not(:checked) + label:before,
+  input[type="radio"]:not(:checked) + label:before {
+    background-color: lightgray !important;
+  }
+  input[type="checkbox"]:checked:hover,
+  input[type="checkbox"]:checked:focus {
+    color: #050e15 !important;
+  }
+  input[type="checkbox"]:checked:focus + label,
+  input[type="radio"]:checked:focus + label {
+    color: #050e15 !important;
+  }
+  input[type="checkbox"] + label:hover,
+  input[type="radio"] + label:hover {
+    color: #050e15 !important;
+  }
+  .welcomecard {
+    box-sizing: border-box;
+    /* display: flex; */
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 6px;
+
+    background: linear-gradient(
+        180deg,
+        rgba(208, 230, 241, 0.3) 0%,
+        rgba(145, 201, 230, 0.3) 100%
+      ),
+      #ffffff;
+    border: 1px solid #aed7f2;
+    border-radius: 8px;
+    margin: 10px;
+  }
+  .heading-ll {
+    font-family: "Manrope", sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: 0.005em;
+    color: #050e15;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+  }
+  .sub-heading-ll {
+    font-family: "Manrope", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.01em;
+    color: #292e30;
+    flex: none;
+  }
+  .sub-heading-ll-2 {
+    font-family: "Manrope", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.01em;
+    color: #0d4e60;
+    flex: none;
+  }
+  /* ---------------------------------------------------------- */
+  .wizard-step-strip {
+    background: #e8f4fb
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'><rect width='20' height='20' fill='none' stroke='%23b2d7e9' stroke-width='0.5'/></svg>")
+      repeat;
+    text-align: center;
+    height: 100%;
+  }
+
+  .welcome-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .quote-ll {
+    font-size: 16px;
+    background-color: #fff5d2;
+    padding: 10px;
+    margin: 10px 0;
+    font-weight: 600;
+    border-radius: 6px;
+    font-family: "Manrope", sans-serif;
+    color: #0d4e60;
+    letter-spacing: 0.1em;
+    word-spacing: 0.2em;
+  }
+
+  .button-row-2 {
+    margin: 20px 0;
+  }
+
+  .note {
+    margin-top: 6px;
+    font-size: 12px;
+    color: #637477;
+  }
+  .wizard-step {
+    padding: 10px;
+  }
+  .next-q:disabled,
+  .next-q.disabled-btn {
+    background: #ebf2f5;
+    border-radius: 4px;
+    color: #cacfd8;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+  .start-btn {
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.16) 0%,
+        rgba(255, 255, 255, 0) 100%
+      ),
+      #0d4e60 !important;
+    box-shadow: 0px 1px 2px rgba(14, 18, 27, 0.24), 0px 0px 0px 1px #0d4e60 !important;
+    border-radius: 6px;
+    margin-top: 20px;
+    transition: background-color 250ms;
+    color: #fff !important;
+    font-size: 14px;
+    cursor: pointer;
+    font-family: "Manrope", sans-serif;
+    padding: 4px 8px 4px 16px;
+    gap: 4px;
+  }
+  .start-btn:hover {
+    opacity: 0.8;
+  }
+  #analyseContainer input {
+    margin: auto;
+    padding: 8px;
+    border: 1px solid #d4d4d4;
+    margin-bottom: 1px;
+    color: black;
+    font-family: "Manrope", sans-serif !important;
+    /* width: 100%; */
+    background: #f8fafb;
+    border-top: 1px solid #e5e5e5;
+    border-left: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
+    border-bottom: 2px solid #4c9bc6;
+    box-shadow: 0px 1px 2px rgba(10, 13, 20, 0.03);
+    border-radius: 6px 6px 0px 0px;
+  }
+
+  .step {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-family: sans-serif;
+  }
+
+  .loader {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ccc;
+    border-top: 2px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 10px;
+  }
+
+  .checkmark {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    display: inline-block;
+    color: green;
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #bec4c4;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  .phase-ll {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 12px;
+    gap: 6px;
+    background: #ffffff;
+    border-bottom: 0.5px solid #e5e5e5;
+    color: #3c4349;
+    font-weight: 500;
+    font-size: 13px;
+  }
+
+  .loading-p-circle {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #e2e8f0;
+    border-top: 2px solid #64748b;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  .description {
+    margin-bottom: 4px;
+    color: #8a9799;
+    margin-left: 15px;
+    font-size: 13px;
+    font-family: Manrope, sans-serif !important;
+  }
+  .loader-line-ll {
+    width: 2px;
+    height: 10px;
+    margin-left: 4px;
+    margin-top: 0px;
+    background: rgb(204, 204, 204);
+  }
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  #drag-yourself-IconLL {
+    padding: 0px;
+    cursor: grab;
+  }
+
+  #drag-yourself-IconLL:active {
+    cursor: grabbing;
+  }
+
+  #drag-yourself-IconLL:hover {
+    opacity: 0.9;
+  }
+</style>
+
+<div id="analyseContainer">
+  <!-- Close Button -->
+  <div
+    style="
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 10px;
+      background-color: #f8fafb;
+    "
+  >
+    <div>
+      <img id="lead-analyse-logo" style="width: 80px; height: auto" />
+    </div>
+    <div id="drag-yourself-IconLL">
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M6.75098 8.625C6.75098 8.8475 6.685 9.06501 6.56138 9.25002C6.43776 9.43502 6.26206 9.57922 6.0565 9.66437C5.85093 9.74951 5.62473 9.77179 5.4065 9.72838C5.18827 9.68498 4.98782 9.57783 4.83048 9.4205C4.67315 9.26316 4.566 9.06271 4.52259 8.84448C4.47919 8.62625 4.50146 8.40005 4.58661 8.19448C4.67176 7.98891 4.81596 7.81321 5.00096 7.6896C5.18597 7.56598 5.40347 7.5 5.62598 7.5C5.92435 7.5 6.21049 7.61853 6.42147 7.82951C6.63245 8.04048 6.75098 8.32663 6.75098 8.625ZM12.001 7.5C11.7785 7.5 11.561 7.56598 11.376 7.6896C11.191 7.81321 11.0468 7.98891 10.9616 8.19448C10.8765 8.40005 10.8542 8.62625 10.8976 8.84448C10.941 9.06271 11.0481 9.26316 11.2055 9.4205C11.3628 9.57783 11.5633 9.68498 11.7815 9.72838C11.9997 9.77179 12.2259 9.74951 12.4315 9.66437C12.6371 9.57922 12.8128 9.43502 12.9364 9.25002C13.06 9.06501 13.126 8.8475 13.126 8.625C13.126 8.32663 13.0075 8.04048 12.7965 7.82951C12.5855 7.61853 12.2993 7.5 12.001 7.5ZM18.376 9.75C18.5985 9.75 18.816 9.68402 19.001 9.5604C19.186 9.43679 19.3302 9.26109 19.4153 9.05552C19.5005 8.84995 19.5228 8.62375 19.4794 8.40552C19.436 8.1873 19.3288 7.98684 19.1715 7.82951C19.0141 7.67217 18.8137 7.56503 18.5955 7.52162C18.3772 7.47821 18.151 7.50049 17.9455 7.58564C17.7399 7.67078 17.5642 7.81498 17.4406 7.99998C17.317 8.18499 17.251 8.4025 17.251 8.625C17.251 8.92337 17.3695 9.20952 17.5805 9.4205C17.7915 9.63147 18.0776 9.75 18.376 9.75ZM5.62598 14.25C5.40347 14.25 5.18597 14.316 5.00096 14.4396C4.81596 14.5632 4.67176 14.7389 4.58661 14.9445C4.50146 15.15 4.47919 15.3762 4.52259 15.5945C4.566 15.8127 4.67315 16.0132 4.83048 16.1705C4.98782 16.3278 5.18827 16.435 5.4065 16.4784C5.62473 16.5218 5.85093 16.4995 6.0565 16.4144C6.26206 16.3292 6.43776 16.185 6.56138 16C6.685 15.815 6.75098 15.5975 6.75098 15.375C6.75098 15.0766 6.63245 14.7905 6.42147 14.5795C6.21049 14.3685 5.92435 14.25 5.62598 14.25ZM12.001 14.25C11.7785 14.25 11.561 14.316 11.376 14.4396C11.191 14.5632 11.0468 14.7389 10.9616 14.9445C10.8765 15.15 10.8542 15.3762 10.8976 15.5945C10.941 15.8127 11.0481 16.0132 11.2055 16.1705C11.3628 16.3278 11.5633 16.435 11.7815 16.4784C11.9997 16.5218 12.2259 16.4995 12.4315 16.4144C12.6371 16.3292 12.8128 16.185 12.9364 16C13.06 15.815 13.126 15.5975 13.126 15.375C13.126 15.0766 13.0075 14.7905 12.7965 14.5795C12.5855 14.3685 12.2993 14.25 12.001 14.25ZM18.376 14.25C18.1535 14.25 17.936 14.316 17.751 14.4396C17.566 14.5632 17.4218 14.7389 17.3366 14.9445C17.2515 15.15 17.2292 15.3762 17.2726 15.5945C17.316 15.8127 17.4231 16.0132 17.5805 16.1705C17.7378 16.3278 17.9383 16.435 18.1565 16.4784C18.3747 16.5218 18.6009 16.4995 18.8065 16.4144C19.0121 16.3292 19.1878 16.185 19.3114 16C19.435 15.815 19.501 15.5975 19.501 15.375C19.501 15.0766 19.3824 14.7905 19.1715 14.5795C18.9605 14.3685 18.6743 14.25 18.376 14.25Z"
+          fill="#383E44"
+        />
+      </svg>
+    </div>
+    <div id="closeAnalyseCardBtn">
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 24 25"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g id="Dismiss">
+          <path
+            id="Shape"
+            d="M4.2097 4.53554L4.29289 4.44133C4.65338 4.08085 5.22061 4.05312 5.6129 4.35814L5.70711 4.44133L12 10.7334L18.2929 4.44133C18.6834 4.05081 19.3166 4.05081 19.7071 4.44133C20.0976 4.83186 20.0976 5.46502 19.7071 5.85554L13.415 12.1484L19.7071 18.4413C20.0676 18.8018 20.0953 19.369 19.7903 19.7613L19.7071 19.8555C19.3466 20.216 18.7794 20.2438 18.3871 19.9387L18.2929 19.8555L12 13.5634L5.70711 19.8555C5.31658 20.2461 4.68342 20.2461 4.29289 19.8555C3.90237 19.465 3.90237 18.8319 4.29289 18.4413L10.585 12.1484L4.29289 5.85554C3.93241 5.49506 3.90468 4.92783 4.2097 4.53554L4.29289 4.44133L4.2097 4.53554Z"
+            fill="#BCBAC7"
+          />
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div id="notification-analyse-ll" class="notification-ll">Success!</div>
+
+  <!-- Step 1: Questions -->
+  <div id="stepOneDiv" class="main-item">
+    <div class="phase-ll" style="display: none">Phase 1</div>
+    <!-- Step 1 of 4 -->
+
+    <div class="wizard-step wizard-step-strip" id="q1">
+      <div class="welcome-container">
+        <div>
+          <img src="" id="welcome-img" style="width: 100px" />
+        </div>
+        <div class="heading-ll">Welcome to LeadLabs</div>
+        <div class="sub-heading-ll">
+          The personal AI assistant every sales rep needs.
+        </div>
+        <div class="quote-ll">After all, even Tony Stark needs Jarvis!</div>
+        <div class="sub-heading-ll-2">
+          Let your own Jarvis get to know better
+        </div>
+
+        <button
+          class="start-btn next-q"
+          style="width: 80%; margin: 60px auto auto auto"
+          data-next="q2"
+        >
+          Begin Calibration
+        </button>
+
+        <div class="sub-heading-ll-2 note">
+          Note: This calibration will not impact your historical data
+        </div>
+      </div>
+    </div>
+
+    <div class="wizard-step" id="q2" style="display: none">
+      <h3 id="question2">What is your current role?</h3>
+      <input type="radio" id="role1" name="role" value="Founder" />
+      <label for="role1">Founder</label>
+      <input type="radio" id="role2" name="role" value="Sales Leader" />
+      <label for="role2">Sales Leader</label>
+      <input type="radio" id="role3" name="role" value="SDR/BDR" />
+      <label for="role3">SDR/BDR</label>
+      <input type="radio" id="role4" name="role" value="AE" />
+      <label for="role4">AE</label>
+      <input type="radio" id="role5" name="role" value="Full Cycle AE" />
+      <label for="role5">Full Cycle AE</label>
+      <input type="radio" id="role6" name="role" value="Others" />
+      <label for="role6">Others</label>
+      <div class="button-row">
+        <button class="back-q" data-back="q1">< Back</button>
+
+        <button class="next-q" data-next="q3">Next ></button>
+      </div>
+    </div>
+
+    <!-- Step 3 of 4 -->
+    <div class="wizard-step" id="q3" style="display: none">
+      <h3 id="question3">2. What segment do you sell to?</h3>
+      <input type="checkbox" id="segment1" name="segment" value="SMB" />
+      <label for="segment1">SMB</label>
+      <input type="checkbox" id="segment2" name="segment" value="Mid-Market" />
+      <label for="segment2">Mid-Market</label>
+      <input type="checkbox" id="segment3" name="segment" value="Enterprise" />
+      <label for="segment3">Enterprise</label>
+      <input
+        type="checkbox"
+        id="segment4"
+        name="segment"
+        value="Named Accounts"
+      />
+      <label for="segment4">Named/Strategic Accounts</label>
+      <div class="button-row">
+        <button class="back-q" data-back="q2">< Back</button>
+        <button class="next-q" data-next="q4">Next ></button>
+      </div>
+    </div>
+    <div class="wizard-step" id="q4" style="display: none">
+      <h3 id="question4">3. What made you sign up for LeadLabs?</h3>
+      <input
+        type="checkbox"
+        id="reason1"
+        name="reason"
+        value="Eliminate repetitive sales tasks"
+      />
+      <label for="reason1">To eliminate repetitive sales tasks</label>
+      <input
+        type="checkbox"
+        id="reason2"
+        name="reason"
+        value="Build authentic relationships"
+      />
+      <label for="reason2">To build authentic relationships</label>
+      <input
+        type="checkbox"
+        id="reason3"
+        name="reason"
+        value="Increase connect rates"
+      />
+      <label for="reason3">To increase connect rates</label>
+      <div class="button-row">
+        <button class="back-q" data-back="q3">< Back</button>
+        <button class="next-q" data-next="q5">Next ></button>
+      </div>
+    </div>
+    <!-- Step 4 of 4 -->
+    <div class="wizard-step" id="q5" style="display: none">
+      <h3 id="question5">
+        4. What are some use cases you might be interested in?
+      </h3>
+      <input
+        type="checkbox"
+        id="usecase1"
+        name="usecase"
+        value="Understand prospect’s personality"
+      />
+      <label for="usecase1">Understand prospect’s personality</label>
+      <input
+        type="checkbox"
+        id="usecase2"
+        name="usecase"
+        value="Social Selling"
+      />
+      <label for="usecase2">Social Selling</label>
+      <input
+        type="checkbox"
+        id="usecase3"
+        name="usecase"
+        value="Building POVs"
+      />
+      <label for="usecase3">Building POVs</label>
+      <input
+        type="checkbox"
+        id="usecase4"
+        name="usecase"
+        value="Personalized Outreach"
+      />
+      <label for="usecase4">Personalized Outreach</label>
+      <input
+        type="checkbox"
+        id="usecase5"
+        name="usecase"
+        value="Pre-call prep"
+      />
+      <label for="usecase5">Pre-call prep</label>
+      <input
+        type="checkbox"
+        id="usecase6"
+        name="usecase"
+        value="Post-call followups"
+      />
+      <label for="usecase6">Post-call followups</label>
+      <input type="checkbox" id="usecase7" name="usecase" value="Others" />
+      <label for="usecase7">Others</label>
+      <div class="button-row">
+        <button class="back-q" data-back="q4">< Back</button>
+        <button id="submitAnswersBtn">Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Final Step -->
+  <div id="stepTwoDiv" class="main-item wizard-step" style="display: none">
+    <h3>AI Persona Setup</h3>
+
+    <h6>
+      Your AI assistant is now learning about your company and the personas you
+      sell to..
+    </h6>
+    <div
+      id="company-container-ll"
+      style="
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 16px;
+        gap: 10px;
+        background: #f5f7f7;
+        border-radius: 8px;
+        margin-bottom: 10px;
+      "
+    >
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          padding: 0px;
+          gap: 10px;
+        "
+      >
+        <img
+          id="company-img-ll"
+          style="width: 48px; height: 48px; border-radius: 6px"
+        />
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 0px;
+            gap: 2px;
+          "
+        >
+          <div
+            id="company-name-your-ll"
+            style="
+              font-family: Manrope;
+              font-style: normal;
+              font-weight: 400;
+              font-size: 18px;
+              line-height: 24px;
+              display: flex;
+              align-items: center;
+              letter-spacing: -0.005em;
+              color: #050e15;
+            "
+          ></div>
+          <div
+            id="company-followers-ll"
+            style="
+              font-family: Manrope;
+              font-style: normal;
+              font-weight: 600;
+              font-size: 12px;
+              line-height: 14px;
+              display: flex;
+              align-items: center;
+              letter-spacing: -0.005em;
+              color: #637477;
+            "
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <input
+      type="text"
+      id="company-url"
+      name="company-url-ll"
+      placeholder="Your company URL in https://example.com format"
+      required
+    />
+    <label for="ATL">Decision maker titles (ATL) you sell to.</label>
+    <input type="text" id="ATL-ll" name="ATL" placeholder="CRO, VP Sales" />
+
+    <div
+      style="
+        font-size: 12px;
+        font-family: 'Manrope';
+        color: #666;
+        margin-top: 2px;
+        margin-bottom: 8px;
+        margin-left: 2px;
+      "
+    >
+      Enter up to 3 decision maker titles
+    </div>
+
+    <label for="BTL">Users/Champion titles (BTL) you sell to. </label>
+    <input
+      type="text"
+      id="BTL-ll"
+      name="BTL"
+      placeholder="SDR Manager, SDR, AE"
+    />
+    <div
+      style="
+        font-size: 12px;
+        font-family: 'Manrope';
+        color: #666;
+        margin-top: 2px;
+        margin-bottom: 8px;
+        margin-left: 2px;
+      "
+    >
+      Enter up to 3 user titles
+    </div>
+
+    <div class="button-row-2">
+      <button id="submitCompany">Submit</button>
+    </div>
+  </div>
+  <div id="stepThreeDiv" class="main-item wizard-step" style="display: none">
+    <div id="onboarding-loader"></div>
+  </div>
+</div>

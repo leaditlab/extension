@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Sans"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <style>
+      body {
+        font-family: "Manrope";
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+      .container-ll {
+        background-color: #fff;
+        padding: 20px;
+        text-align: center;
+        color: #222222;
+        height: 100%;
+        padding-top: 50px;
+      }
+
+      .fs-12-ll {
+        font-size: 12px !important;
+      }
+
+      .fs-14-ll {
+        font-size: 14px !important;
+      }
+      .fs-26-ll {
+        font-size: 26px !important;
+      }
+      /* Font-Weight */
+
+      .fw-500-ll {
+        font-weight: 500 !important;
+      }
+      .fw-600-ll {
+        font-weight: 600 !important;
+      }
+      .analyzing-ll {
+        display: flex;
+        align-items: center;
+        margin: 10px 0;
+        padding: 5px 8px;
+
+        border-radius: 5px;
+      }
+      .analyzing-background-color-ll {
+        background-color: #eceaef;
+      }
+      .analyzing-ll span {
+        flex: 1;
+        text-align: left;
+      }
+      .analyzing-border-ll {
+        border: 1px solid #eceaef;
+      }
+
+      .analyzing-ll .checkmark-ll {
+        box-sizing: border-box;
+        position: relative;
+        display: block;
+        color: white !important;
+        background-color: #61be52;
+        border-radius: 50%;
+        padding: 0px 5px;
+        font-weight: 600;
+        font-size: 13px;
+      }
+      .loading-icon-ll {
+        width: 20px;
+        height: 20px;
+        border: 3px solid #61be52;
+        border-bottom-color: transparent;
+        border-radius: 50%;
+        display: inline-block;
+        box-sizing: border-box;
+        animation: rotation 1s linear infinite;
+      }
+
+      @keyframes rotation {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      .profile-image-container-ll {
+        background: #fff;
+        padding: 12px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        align-items: center;
+        width: 60%;
+        margin: auto;
+        margin-bottom: 10px;
+        margin-top: 30px;
+        position: relative;
+      }
+      .profile-image-ll {
+        width: 70px;
+        height: 70px;
+        margin: 0 auto 10px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .profile-image-ll img {
+        width: 100%;
+        height: auto;
+      }
+      .profile-name-popup {
+        text-align: left;
+        font-size: 11px;
+        font-family: "Manrope";
+        margin-left: 75px;
+      }
+      .profile-details-ll {
+        flex: 1;
+      }
+      .profile-details-ll .line-ll {
+        height: 8px;
+        background: #eaeaea;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+      .profile-details-ll .line-ll.short-ll {
+        width: 50%;
+      }
+      .binoculars-ll {
+        position: absolute;
+        width: auto;
+        height: 145px;
+        transform: translateX(-50%);
+        animation: move 4s infinite alternate;
+        z-index: 1;
+        margin-top: 25px;
+      }
+      @keyframes move {
+        0% {
+          left: 38%;
+        }
+        100% {
+          left: 63%;
+        }
+      }
+      .animated-background-ll {
+        animation-duration: 5s;
+        animation-fill-mode: forwards;
+        animation-iteration-count: infinite;
+        animation-name: placeHolderShimmer;
+        animation-timing-function: linear;
+        background-color: #f6f7f8;
+        background: linear-gradient(
+          to right,
+          #eeeeee 8%,
+          #bbbbbb 18%,
+          #e6f3fa 33%
+        );
+        height: 8px;
+        position: relative;
+        margin: 5px;
+        border-radius: 5px;
+      }
+      .static-background-ll {
+        background-color: #f6f7f8;
+        height: 50px;
+        position: relative;
+        margin-bottom: 20px;
+      }
+      .background-masker-ll {
+        background-color: #fff;
+        position: absolute;
+      }
+
+      .btn-divide-left-ll {
+        top: 0;
+        left: 25%;
+        height: 100%;
+        width: 5%;
+      }
+      @keyframes placeHolderShimmer {
+        0% {
+          background-position: -800px 0;
+        }
+        100% {
+          background-position: 800px 0;
+        }
+      }
+      #profileImgLoading {
+        background-image: var(--entity-ghost-person-accent-4);
+        /* need to show the dummy image */
+        border-radius: 3px;
+        margin-right: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-ll">
+      <img id="binocularImgLoading" alt="Binoculars" class="binoculars-ll" />
+      <div class="profile-image-container-ll">
+        <div class="profile-name-popup" id="profileNamePopup"></div>
+        <div style="display: flex">
+          <div class="profile-image-ll">
+            <img id="profileImgLoading" alt="person" />
+          </div>
+          <div class="profile-details-ll">
+            <div class="line-ll" style="width: 70%"></div>
+            <div class="animated-background-ll">
+              <div class="background-masker-ll btn-divide-left-ll"></div>
+            </div>
+            <div class="animated-background-ll">
+              <div class="background-masker-ll btn-divide-left-ll"></div>
+            </div>
+            <div class="animated-background-ll">
+              <div class="background-masker-ll btn-divide-left-ll"></div>
+            </div>
+            <div class="line-ll short-ll"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="loadingSelfWritten" style="display: none">
+        <div class="fs-26-ll fw-600-ll">Fetching user content...</div>
+        <div class="fs-12-ll" style="margin-bottom: 25px">
+          Please wait as we analyse the profile for you
+        </div>
+
+        <div class="analyzing-ll analyzing-border-ll">
+          <span class="fs-14-ll fw-600-ll">Analysing Self Written Content</span>
+          <div class="loading-icon-ll"></div>
+        </div>
+
+        <div class="analyzing-ll analyzing-border-ll">
+          <span class="fs-14-ll">Analysing Engaged Content</span>
+        </div>
+
+        <div class="analyzing-ll analyzing-border-ll">
+          <span class="fs-14-ll">Analysing Company Profile</span>
+          <!-- <div class="loading-icon-ll"></div> -->
+        </div>
+      </div>
+
+      <div id="loadingEngaged" style="display: none">
+        <div class="fs-26-ll fw-600-ll">Fetching engaged content...</div>
+        <div class="fs-12-ll" style="margin-bottom: 25px">
+          Please wait as we analyse the profile for you
+        </div>
+
+        <div class="analyzing-ll analyzing-background-color-ll">
+          <span class="fs-14-ll">Analysing Self Written Content</span>
+          <div class="checkmark-ll">&#10003;</div>
+        </div>
+
+        <div class="analyzing-ll analyzing-border-ll">
+          <span class="fs-14-ll fw-600-ll">Analysing Engaged Content</span>
+          <div class="loading-icon-ll"></div>
+        </div>
+
+        <div class="analyzing-ll analyzing-border-ll">
+          <span class="fs-14-ll">Analysing Company Profile</span>
+          <!-- <div class="loading-icon-ll"></div> -->
+        </div>
+      </div>
+
+      <div id="loadingCompanyProfile" style="display: none">
+        <div class="fs-26-ll fw-600-ll" id="loadingTitleLL">
+          Fetching company details...
+        </div>
+        <div class="fs-12-ll" style="margin-bottom: 25px">
+          Please wait as we analyse the profile for you
+        </div>
+
+        <div class="analyzing-ll analyzing-background-color-ll">
+          <span class="fs-14-ll">Analysing Self Written Content</span>
+          <div class="checkmark-ll">&#10003;</div>
+        </div>
+
+        <div class="analyzing-ll analyzing-background-color-ll">
+          <span class="fs-14-ll">Analysing Engaged Content</span>
+          <div class="checkmark-ll">&#10003;</div>
+        </div>
+
+        <div class="analyzing-ll analyzing-border-ll">
+          <span class="fs-14-ll fw-600-ll">Analysing Company Profile</span>
+          <div class="loading-icon-ll"></div>
+        </div>
+      </div>
+
+      <!--       <div class="fs-14-ll fw-500-ll" style="margin-top: 50px">
+        Please wait while we analyse profile
+      </div> -->
+    </div>
+  </body>
+</html>

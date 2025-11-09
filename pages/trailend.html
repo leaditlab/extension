@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Free Trial Ended Email</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+
+      .container {
+        background-color: #fff;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .logo {
+        height: 50px;
+        margin-right: 10px;
+      }
+
+      .calendar {
+        width: 100px;
+        height: 100px;
+        background-color: #f4f4f4;
+        margin: 0 auto 20px;
+        border-radius: 10px;
+        align-items: center;
+        justify-content: center;
+        font-size: 3em;
+        color: #ff0000;
+      }
+
+      h2 {
+        color: #333;
+      }
+
+      p {
+        color: #666;
+        line-height: 1.6;
+      }
+
+      .button-link {
+        display: inline-block;
+        padding: 6px 8px;
+        transition: background-color 250ms;
+        color: #ffffff;
+        font-size: 14px;
+        cursor: pointer;
+        font-family: "Manrope", sans-serif !important;
+        background: linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.16) 0%,
+            rgba(255, 255, 255, 0) 100%
+          ),
+          #0d4e60;
+        box-shadow: 0px 1px 2px rgba(14, 18, 27, 0.24), 0px 0px 0px 1px #0d4e60;
+        border-radius: 6px;
+        margin: 20px 0;
+      }
+      .button-team {
+        display: inline-block;
+        padding: 6px 8px;
+        transition: background-color 250ms;
+        color: #0d4e60;
+        font-size: 14px;
+        cursor: pointer;
+        font-family: "Manrope", sans-serif !important;
+        background: #dfeff7;
+        box-shadow: 0px 1px 3px rgba(14, 18, 27, 0.12), 0px 0px 0px 1px #b5d6e7;
+        border-radius: 6px;
+        margin: 20px 0;
+      }
+
+      .footer {
+        margin-top: 20px;
+        color: #666;
+      }
+
+      .footer a {
+        color: #007bff;
+        text-decoration: none;
+      }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div
+        id="closeTrailLL"
+        style="top: 10px; right: 30px; position: absolute; cursor: pointer"
+      >
+        <div
+          style="
+            width: 16px;
+            height: 16px;
+            left: 4px;
+            top: 4px;
+            position: absolute;
+            display: flex;
+          "
+        >
+          <svg
+            width="24"
+            height="25"
+            viewBox="0 0 24 25"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g id="Dismiss">
+              <path
+                id="Shape"
+                d="M4.2097 4.53554L4.29289 4.44133C4.65338 4.08085 5.22061 4.05312 5.6129 4.35814L5.70711 4.44133L12 10.7334L18.2929 4.44133C18.6834 4.05081 19.3166 4.05081 19.7071 4.44133C20.0976 4.83186 20.0976 5.46502 19.7071 5.85554L13.415 12.1484L19.7071 18.4413C20.0676 18.8018 20.0953 19.369 19.7903 19.7613L19.7071 19.8555C19.3466 20.216 18.7794 20.2438 18.3871 19.9387L18.2929 19.8555L12 13.5634L5.70711 19.8555C5.31658 20.2461 4.68342 20.2461 4.29289 19.8555C3.90237 19.465 3.90237 18.8319 4.29289 18.4413L10.585 12.1484L4.29289 5.85554C3.93241 5.49506 3.90468 4.92783 4.2097 4.53554L4.29289 4.44133L4.2097 4.53554Z"
+                fill="#BCBAC7"
+              />
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div class="content" style="margin-top: 50px">
+        <div class="calendar">
+          <div class="date">00</div>
+          <div style="font-size: 12px; color: #222">days</div>
+        </div>
+        <h3 style="color: #222">Your free trial has just ended :-(</h3>
+        <p>
+          Thank you for using the LeadLabs Chrome Extension. To continue using
+          the extension, please connect with our team
+        </p>
+        <a
+          href="https://calendly.com/leadlabs-app/empathize-outreach"
+          target="_blank"
+          class="button-team"
+          style="margin-top: 30px"
+          >Talk to our team</a
+        >
+
+        <a
+          href=""
+          target="_blank"
+          class="button-link"
+          style="margin-top: 30px"
+          id="trail-link-ll"
+          >Upgrade your plan</a
+        >
+      </div>
+      <div class="footer">
+        <p>
+          Or mail us at
+          <a href="mailto:hello@leadlabs.app" style="color: #0d4e60"
+            >hello@leadlabs.app</a
+          >
+        </p>
+        <p>
+          News about our products:
+          <a
+            style="color: #0d4e60"
+            href="https://www.linkedin.com/company/leadlabs-app"
+            >LinkedIn</a
+          >
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

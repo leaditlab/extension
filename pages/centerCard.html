@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LeadLabs Interface</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* body {
+        font-family: "Manrope", sans-serif;
+      } */
+      .container-center-ll {
+        margin: 0 auto;
+        position: relative;
+        width: 40vw;
+        /* width: 647px; */
+        /* max-width: 1000px; */
+      }
+
+      .ll-top-actions {
+        position: absolute;
+        top: 15px;
+        right: 0px;
+        z-index: 10;
+        display: flex;
+        justify-content: flex-end;
+        width: auto;
+        height: 0;
+      }
+      .ll-window-btns {
+        display: none;
+        gap: 6px;
+      }
+      .ll-window-btn {
+        background: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.05);
+        transition: background 0.2s;
+        padding: 0;
+      }
+      .ll-window-btn:hover {
+        background: #f4f5fa;
+      }
+      .container-center-ll:hover .ll-window-btns {
+        display: flex;
+      }
+
+      .action-buttons {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 10px;
+        flex-wrap: wrap;
+      }
+      .action-btn {
+        font-family: "Manrope";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 20px;
+        color: #525866;
+        cursor: pointer;
+        transition: all 0.2s;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 4px 8px;
+        gap: 4px;
+        background: #ffffff;
+        border: 0.5px solid rgba(179, 209, 224, 0.6);
+        border-radius: 100px;
+      }
+      .action-btn:hover {
+        background: #f9fafb;
+        border-color: #d1d5db;
+      }
+      .action-btn svg {
+        width: 18px;
+        height: 18px;
+      }
+      .input-container {
+        position: relative;
+        width: 100%;
+        padding: 5px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        background: linear-gradient(
+            90deg,
+            rgba(237, 247, 253, 0.3) 0%,
+            rgba(237, 247, 253, 0.18) 100%
+          ),
+          #ffffff;
+        border: 0.5px solid rgba(208, 230, 241, 0.5);
+        box-shadow: 0px 2px 4px -2px rgba(24, 39, 75, 0.12),
+          0px 4px 4px -2px rgba(24, 39, 75, 0.08);
+        border-radius: 100px;
+      }
+      .input-icon {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .input-icon svg {
+        width: 28px;
+        height: 28px;
+      }
+      .main-input {
+        flex: 1;
+        border: none;
+        outline: none;
+        font-family: "Manrope", sans-serif;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 400;
+        color: #a0aab5;
+        background: transparent;
+        letter-spacing: -0.01em;
+        box-shadow: none !important;
+      }
+      .main-input:focus,
+      .main-input:active {
+        box-shadow: none !important;
+        outline: none !important;
+        background: none !important;
+      }
+      .main-input::placeholder {
+        color: #a0aab5;
+      }
+      .submit-btn {
+        flex-shrink: 0;
+        background: none;
+        border: none;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        padding: 0;
+      }
+      .submit-btn:hover {
+        background: #b5c6d3;
+        transform: scale(1.02);
+      }
+      .submit-btn:active {
+        transform: scale(0.98);
+      }
+      .submit-btn svg {
+        width: 28px;
+        height: 28px;
+      }
+      .all-canvas-list {
+        display: block;
+        max-height: 400px;
+        overflow-y: scroll;
+        background: white;
+        box-sizing: border-box;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+        overflow-y: scroll;
+        background: #ffffff;
+        border: 0.5px solid #e1e4ea;
+        box-shadow: 0px 6px 8px -6px rgba(24, 39, 75, 0.12),
+          0px 8px 16px -6px rgba(24, 39, 75, 0.08);
+        border-radius: 8px;
+      }
+      /* width */
+      ::-webkit-scrollbar {
+        width: 5px;
+      }
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #bec4c4;
+      }
+
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-center-ll">
+      <!-- Close & Maximize buttons -->
+      <div class="ll-top-actions">
+        <div class="ll-window-btns">
+          <!-- Maximize Button -->
+          <div class="ll-window-btn" id="maximize-ll" title="Maximize">
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 28 28"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M18.4998 16.4997V9.99972C18.4998 9.86711 18.4471 9.73994 18.3533 9.64617C18.2596 9.5524 18.1324 9.49972 17.9998 9.49972H11.4998C11.3672 9.49972 11.24 9.5524 11.1462 9.64617C11.0525 9.73994 10.9998 9.86711 10.9998 9.99972C10.9998 10.1323 11.0525 10.2595 11.1462 10.3533C11.24 10.447 11.3672 10.4997 11.4998 10.4997H16.7929L9.64604 17.646C9.55222 17.7398 9.49951 17.867 9.49951 17.9997C9.49951 18.1324 9.55222 18.2597 9.64604 18.3535C9.73986 18.4473 9.86711 18.5 9.99979 18.5C10.1325 18.5 10.2597 18.4473 10.3535 18.3535L17.4998 11.2066V16.4997C17.4998 16.6323 17.5525 16.7595 17.6462 16.8533C17.74 16.947 17.8672 16.9997 17.9998 16.9997C18.1324 16.9997 18.2596 16.947 18.3533 16.8533C18.4471 16.7595 18.4998 16.6323 18.4998 16.4997Z"
+                fill="#2B303B"
+              />
+            </svg>
+          </div>
+          <!-- Close Button -->
+          <div class="ll-window-btn" id="close-center-ll" title="Close">
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 28 28"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M18.8535 18.1465C18.9 18.193 18.9368 18.2481 18.962 18.3088C18.9871 18.3695 19.0001 18.4346 19.0001 18.5003C19.0001 18.566 18.9871 18.631 18.962 18.6917C18.9368 18.7524 18.9 18.8076 18.8535 18.854C18.8071 18.9005 18.7519 18.9373 18.6912 18.9625C18.6305 18.9876 18.5655 19.0006 18.4998 19.0006C18.4341 19.0006 18.369 18.9876 18.3083 18.9625C18.2476 18.9373 18.1925 18.9005 18.146 18.854L13.9998 14.7072L9.85354 18.854C9.75972 18.9478 9.63247 19.0006 9.49979 19.0006C9.36711 19.0006 9.23986 18.9478 9.14604 18.854C9.05222 18.7602 8.99951 18.633 8.99951 18.5003C8.99951 18.3676 9.05222 18.2403 9.14604 18.1465L13.2929 14.0003L9.14604 9.85403C9.05222 9.76021 8.99951 9.63296 8.99951 9.50028C8.99951 9.3676 9.05222 9.24035 9.14604 9.14653C9.23986 9.05271 9.36711 9 9.49979 9C9.63247 9 9.75972 9.05271 9.85354 9.14653L13.9998 13.2934L18.146 9.14653C18.2399 9.05271 18.3671 9 18.4998 9C18.6325 9 18.7597 9.05271 18.8535 9.14653C18.9474 9.24035 19.0001 9.3676 19.0001 9.50028C19.0001 9.63296 18.9474 9.76021 18.8535 9.85403L14.7067 14.0003L18.8535 18.1465Z"
+                fill="#2B303B"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <!-- Action Buttons Without 'Search the web' -->
+      <div class="action-buttons" id="action-buttons">
+        <button class="action-btn" id="centerselfWrittenBtnLL">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M10.7501 14.4995C10.7501 14.5658 10.7237 14.6294 10.6769 14.6763C10.63 14.7232 10.5664 14.7495 10.5001 14.7495H5.50008C5.43377 14.7495 5.37019 14.7232 5.3233 14.6763C5.27642 14.6294 5.25008 14.5658 5.25008 14.4995C5.25008 14.4332 5.27642 14.3696 5.3233 14.3228C5.37019 14.2759 5.43377 14.2495 5.50008 14.2495H10.5001C10.5664 14.2495 10.63 14.2759 10.6769 14.3228C10.7237 14.3696 10.7501 14.4332 10.7501 14.4995ZM13.2501 6.49954C13.252 7.29511 13.0722 8.08062 12.7244 8.79615C12.3766 9.51168 11.87 10.1383 11.2432 10.6283C11.0904 10.7457 10.9666 10.8965 10.8811 11.0692C10.7956 11.2419 10.7508 11.4319 10.7501 11.6245V11.9995C10.7501 12.1984 10.6711 12.3892 10.5304 12.5299C10.3898 12.6705 10.199 12.7495 10.0001 12.7495H6.00008C5.80117 12.7495 5.6104 12.6705 5.46975 12.5299C5.3291 12.3892 5.25008 12.1984 5.25008 11.9995V11.6245C5.25001 11.4337 5.20627 11.2455 5.1222 11.0742C5.03813 10.9029 4.91597 10.7532 4.76508 10.6364C4.13958 10.1495 3.63309 9.52664 3.28398 8.81499C2.93487 8.10334 2.75229 7.32158 2.75008 6.52891C2.73445 3.68704 5.03258 1.31766 7.87508 1.24954C8.57497 1.23287 9.27112 1.35635 9.92258 1.61271C10.574 1.86908 11.1676 2.25314 11.6685 2.74232C12.1693 3.2315 12.5672 3.8159 12.8388 4.46115C13.1105 5.1064 13.2503 5.79945 13.2501 6.49954ZM12.7501 6.49954C12.7503 5.86601 12.6237 5.23886 12.3779 4.65498C12.1321 4.0711 11.7719 3.54229 11.3186 3.09968C10.8654 2.65708 10.3282 2.30961 9.7386 2.07774C9.14903 1.84587 8.51904 1.73428 7.8857 1.74954C5.31258 1.81204 3.2357 3.95391 3.25008 6.52641C3.25238 7.24326 3.41771 7.95019 3.73357 8.59371C4.04943 9.23722 4.50753 9.80046 5.0732 10.2408C5.28411 10.4045 5.45476 10.6143 5.57208 10.8542C5.68941 11.094 5.75029 11.3575 5.75008 11.6245V11.9995C5.75008 12.0658 5.77642 12.1294 5.8233 12.1763C5.87019 12.2232 5.93377 12.2495 6.00008 12.2495H10.0001C10.0664 12.2495 10.13 12.2232 10.1769 12.1763C10.2237 12.1294 10.2501 12.0658 10.2501 11.9995V11.6245C10.2508 11.3564 10.3127 11.0921 10.4312 10.8516C10.5497 10.6111 10.7216 10.4009 10.9338 10.237C11.5013 9.79361 11.96 9.22636 12.2747 8.5786C12.5895 7.93085 12.7521 7.21972 12.7501 6.49954ZM8.54133 3.25329C8.47764 3.2459 8.41354 3.26327 8.36229 3.3018C8.31104 3.34033 8.27656 3.39708 8.26597 3.46032C8.25537 3.52356 8.26948 3.58845 8.30538 3.64158C8.34127 3.69471 8.39621 3.73201 8.45883 3.74579C9.5957 3.93704 10.5626 4.90266 10.7538 6.04141C10.7637 6.09958 10.7939 6.15238 10.8389 6.19047C10.884 6.22856 10.9411 6.24948 11.0001 6.24954C11.0141 6.2495 11.0281 6.24825 11.042 6.24579C11.1072 6.23463 11.1654 6.19802 11.2037 6.144C11.2421 6.08998 11.2574 6.02296 11.2463 5.95766C11.1261 5.28438 10.8023 4.66415 10.3186 4.18059C9.83494 3.69703 9.21464 3.37338 8.54133 3.25329Z"
+              fill="#717784"
+            />
+          </svg>
+
+          View insights
+        </button>
+        <button class="action-btn" id="centerwriteCommentBtnLL">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M10.25 6.5C10.25 6.5663 10.2237 6.62989 10.1768 6.67678C10.1299 6.72366 10.0663 6.75 10 6.75H6C5.9337 6.75 5.87011 6.72366 5.82322 6.67678C5.77634 6.62989 5.75 6.5663 5.75 6.5C5.75 6.4337 5.77634 6.37011 5.82322 6.32322C5.87011 6.27634 5.9337 6.25 6 6.25H10C10.0663 6.25 10.1299 6.27634 10.1768 6.32322C10.2237 6.37011 10.25 6.4337 10.25 6.5ZM10 8.25H6C5.9337 8.25 5.87011 8.27634 5.82322 8.32322C5.77634 8.37011 5.75 8.4337 5.75 8.5C5.75 8.5663 5.77634 8.62989 5.82322 8.67678C5.87011 8.72366 5.9337 8.75 6 8.75H10C10.0663 8.75 10.1299 8.72366 10.1768 8.67678C10.2237 8.62989 10.25 8.5663 10.25 8.5C10.25 8.4337 10.2237 8.37011 10.1768 8.32322C10.1299 8.27634 10.0663 8.25 10 8.25ZM14.25 3.5V11.5C14.25 11.6989 14.171 11.8897 14.0303 12.0303C13.8897 12.171 13.6989 12.25 13.5 12.25H9.57812L8.65125 13.875C8.58566 13.9898 8.49088 14.0853 8.3765 14.1517C8.26213 14.218 8.13224 14.253 8 14.253C7.86776 14.253 7.73787 14.218 7.6235 14.1517C7.50912 14.0853 7.41434 13.9898 7.34875 13.875L6.42188 12.25H2.5C2.30109 12.25 2.11032 12.171 1.96967 12.0303C1.82902 11.8897 1.75 11.6989 1.75 11.5V3.5C1.75 3.30109 1.82902 3.11032 1.96967 2.96967C2.11032 2.82902 2.30109 2.75 2.5 2.75H13.5C13.6989 2.75 13.8897 2.82902 14.0303 2.96967C14.171 3.11032 14.25 3.30109 14.25 3.5ZM13.75 3.5C13.75 3.4337 13.7237 3.37011 13.6768 3.32322C13.6299 3.27634 13.5663 3.25 13.5 3.25H2.5C2.4337 3.25 2.37011 3.27634 2.32322 3.32322C2.27634 3.37011 2.25 3.4337 2.25 3.5V11.5C2.25 11.5663 2.27634 11.6299 2.32322 11.6768C2.37011 11.7237 2.4337 11.75 2.5 11.75H6.56687C6.61082 11.7499 6.65401 11.7615 6.69208 11.7834C6.73016 11.8053 6.76178 11.8369 6.78375 11.875L7.78375 13.625C7.80564 13.6632 7.83722 13.6949 7.87531 13.717C7.91339 13.739 7.95661 13.7506 8.00062 13.7506C8.04463 13.7506 8.08786 13.739 8.12595 13.717C8.16403 13.6949 8.19561 13.6632 8.2175 13.625L9.2175 11.875C9.23947 11.8369 9.27109 11.8053 9.30917 11.7834C9.34724 11.7615 9.39043 11.7499 9.43437 11.75H13.5C13.5663 11.75 13.6299 11.7237 13.6768 11.6768C13.7237 11.6299 13.75 11.5663 13.75 11.5V3.5Z"
+              fill="#717784"
+            />
+          </svg>
+
+          Leave a comment
+        </button>
+        <div
+          id="get-canvas-center"
+          style="display: flex; gap: 12px; align-items: center"
+        ></div>
+      </div>
+      <div class="all-canvas-list" id="all-canvas-list" style="display: none">
+        <div
+          style="
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 16px;
+            display: flex;
+            align-items: center;
+            color: #2b303b;
+            margin-bottom: 10px;
+          "
+        >
+          Choose an action to run canvas
+        </div>
+        <div
+          style="
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 16px;
+            display: flex;
+            align-items: center;
+            color: #2b303b;
+            margin-bottom: 10px;
+            display: none;
+          "
+          id="no-action-center-ll"
+        >
+          Action not available.
+        </div>
+        <div id="get-canvas-center-list"></div>
+      </div>
+
+      <!-- Main Input Area -->
+      <div class="input-container">
+        <div class="input-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path
+              d="M10.2836 1.53906C12.1992 1.53906 13.7521 1.91169 13.7527 2.37139C13.7527 2.83122 12.1996 3.20448 10.2836 3.20448V2.64934C11.2112 2.64934 12.0329 2.55876 12.6071 2.42097C12.6739 2.40494 12.7357 2.38775 12.7927 2.37139C12.7357 2.35505 12.6739 2.33859 12.6071 2.32257C12.0329 2.18477 11.2112 2.0942 10.2836 2.0942C9.35607 2.0942 8.53433 2.18477 7.96017 2.32257C7.89311 2.33866 7.83103 2.35498 7.77387 2.37139C7.83107 2.38782 7.89305 2.40487 7.96017 2.42097C8.53433 2.55876 9.3561 2.64934 10.2836 2.64934V3.20448L9.92907 3.19997C8.17972 3.15734 6.81459 2.80248 6.81459 2.37139C6.81514 1.91169 8.36807 1.53907 10.2836 1.53906Z"
+              fill="#0D4E60"
+              fill-opacity="0.8"
+            />
+            <path
+              d="M7.78566 3.89797H8.61824V8.06086H7.78566V3.89797Z"
+              fill="#0D4E60"
+              fill-opacity="0.8"
+            />
+            <path
+              d="M6.81459 2.44143H7.64717L8.61824 3.89797H7.78566L6.81459 2.44143Z"
+              fill="#0D4E60"
+              fill-opacity="0.8"
+            />
+            <path
+              d="M12.8507 2.44143H13.6833L12.6426 3.89845H11.81L12.8507 2.44143Z"
+              fill="#0D4E60"
+              fill-opacity="0.8"
+            />
+            <path
+              d="M11.81 3.89845H12.6426L12.6424 8.06086H11.8098L11.81 3.89845Z"
+              fill="#0D4E60"
+              fill-opacity="0.8"
+            />
+            <path
+              d="M7.78566 8.06086H8.61824L3.94829 15.9632C3.62033 16.5182 4.02041 17.2193 4.66508 17.2193H16.061C16.716 17.2193 17.1145 16.498 16.7658 15.9436L11.8098 8.06086H12.6424L17.4498 15.5511C18.2204 16.7517 17.3583 18.3294 15.9317 18.3294H4.74912C3.34215 18.3294 2.47678 16.7904 3.20781 15.5882L7.78566 8.06086Z"
+              fill="#0D4E60"
+              fill-opacity="0.8"
+            />
+            <path
+              d="M6.88384 11.8771L14.5852 13.2647L16.2504 15.7625C16.5671 16.1945 16.2587 16.8032 15.723 16.8032H5.05224C4.51656 16.8032 4.20808 16.1945 4.52486 15.7625L6.88384 11.8771Z"
+              fill="#0D4E60"
+              fill-opacity="0.8"
+            />
+          </svg>
+        </div>
+        <input
+          type="text"
+          class="main-input"
+          id="execute-action-center-ll"
+          placeholder="How can LeadLabs help you today?"
+        />
+
+        <button id="execute-submit-center-ll" class="submit-btn">
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 28 28"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <!-- Outer circle -->
+            <path
+              d="M0 14C0 6.26801 6.26801 0 14 0C21.732 0 28 6.26801 28 14C28 21.732 21.732 28 14 28C6.26801 28 0 21.732 0 14Z"
+              fill="#BFD0D5"
+            />
+            <!-- Up arrow -->
+            <path
+              d="M7.78 12.22L14 6L20.22 12.22M14 6V22"
+              stroke="white"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </body>
+</html>

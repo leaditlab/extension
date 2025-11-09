@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LeadLabs Connection</title>
+    <style>
+      /* * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      } */
+
+      /* body {
+       
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #e8f4f8 0%, #f0f4f8 100%);
+        font-family: Arial, sans-serif;
+      } */
+
+      .canvas-container {
+        position: relative;
+        width: 600px;
+        height: 200px;
+      }
+
+      /* Center Flask Icon */
+      .center-icon {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 64px;
+        height: 64px;
+        background: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        /* box-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
+        animation: glow 2s ease-in-out infinite; */
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0px 0px 40px 6px rgba(13, 78, 96, 0.39);
+        border-radius: 1198.8px;
+        border: 1px solid #0d4e60;
+      }
+
+      .center-icon::before {
+        content: "";
+        position: absolute;
+        inset: -3px;
+        border-radius: 50%;
+        /* background: linear-gradient(45deg, #38bdf8, #3b82f6, #8b5cf6); */
+        z-index: -1;
+        animation: rotate 3s linear infinite;
+      }
+
+      .flask-icon {
+        width: 50px;
+        height: 50px;
+        fill: none;
+        stroke: #0ea5e9;
+        stroke-width: 2;
+      }
+
+      /* Node Positions */
+      .node {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border: 0.5px solid #4c9bc6;
+      }
+
+      .node img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        padding: 2px;
+      }
+
+      .node-top-left {
+        left: 45px;
+        top: 35px;
+      }
+
+      .node-bottom-left {
+        left: 45px;
+        bottom: 35px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .node-top-right {
+        right: 45px;
+        top: 35px;
+      }
+
+      .node-bottom-right {
+        right: 45px;
+        bottom: 35px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* SVG Lines Container */
+      .lines-container {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+      svg.canvas-svg {
+        width: 100%;
+        height: 100%;
+      }
+
+      /* Moving dotted paths */
+      .connection-path {
+        fill: none;
+        stroke: #3b82f6;
+        stroke-width: 2.5;
+        stroke-dasharray: 6, 8;
+        stroke-linecap: round;
+        animation: flow 1s linear infinite;
+      }
+
+      /* Fire/spark effect - thicker glowing line segment */
+      .fire-spark {
+        fill: none;
+        stroke: url(#fireGradient);
+        stroke-width: 5;
+        stroke-dasharray: 30, 500;
+        stroke-linecap: round;
+        filter: url(#glow);
+      }
+
+      .fire-spark.path1 {
+        animation: spark-left-top 3s ease-in-out infinite;
+      }
+
+      .fire-spark.path2 {
+        animation: spark-left-bottom 3s ease-in-out infinite 0.3s;
+      }
+
+      .fire-spark.path3 {
+        animation: spark-right-top 3s ease-in-out infinite 0.6s;
+      }
+
+      .fire-spark.path4 {
+        animation: spark-right-bottom 3s ease-in-out infinite 0.9s;
+      }
+
+      /* Animations */
+      @keyframes glow {
+        0%,
+        100% {
+          box-shadow: 0 0 30px rgba(56, 189, 248, 0.4),
+            0 0 50px rgba(59, 130, 246, 0.2);
+        }
+        50% {
+          box-shadow: 0 0 40px rgba(56, 189, 248, 0.6),
+            0 0 70px rgba(59, 130, 246, 0.4);
+        }
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes flow {
+        0% {
+          stroke-dashoffset: 0;
+        }
+        100% {
+          stroke-dashoffset: -14;
+        }
+      }
+
+      /* Spark animations - moving along the path */
+      @keyframes spark-left-top {
+        0% {
+          stroke-dashoffset: 530;
+          opacity: 1;
+        }
+        100% {
+          stroke-dashoffset: 0;
+          opacity: 1;
+        }
+      }
+
+      @keyframes spark-left-bottom {
+        0% {
+          stroke-dashoffset: 530;
+          opacity: 1;
+        }
+        100% {
+          stroke-dashoffset: 0;
+          opacity: 1;
+        }
+      }
+
+      @keyframes spark-right-top {
+        0% {
+          stroke-dashoffset: 530;
+          opacity: 1;
+        }
+        100% {
+          stroke-dashoffset: 0;
+          opacity: 1;
+        }
+      }
+
+      @keyframes spark-right-bottom {
+        0% {
+          stroke-dashoffset: 530;
+          opacity: 1;
+        }
+        100% {
+          stroke-dashoffset: 0;
+          opacity: 1;
+        }
+      }
+
+      /* Icon styles for bottom nodes */
+      .icon-shape {
+        width: 35px;
+        height: 35px;
+        fill: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="canvas-container">
+      <!-- SVG Lines -->
+      <div class="lines-container">
+        <svg
+          class="canvas-svg"
+          viewBox="0 0 700 350"
+          preserveAspectRatio="xMidYMid meet"
+        >
+          <!-- Gradient and filter definitions -->
+          <defs>
+            <linearGradient id="fireGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color: #fbbf24; stop-opacity: 0" />
+              <stop offset="30%" style="stop-color: #f59e0b; stop-opacity: 1" />
+              <stop offset="50%" style="stop-color: #fb923c; stop-opacity: 1" />
+              <stop offset="70%" style="stop-color: #f97316; stop-opacity: 1" />
+              <stop
+                offset="100%"
+                style="stop-color: #ea580c; stop-opacity: 0"
+              />
+            </linearGradient>
+
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+              <feMerge>
+                <feMergeNode in="coloredBlur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+
+          <!-- Left side paths -->
+          <!-- Top left: horizontal then curved down -->
+          <path
+            class="connection-path"
+            d="M 90 95 L 200 95 Q 240 95, 240 135 L 240 155 Q 240 175, 260 175 L 300 175"
+          />
+          <path
+            class="fire-spark path1"
+            d="M 90 95 L 200 95 Q 240 95, 240 135 L 240 155 Q 240 175, 260 175 L 300 175"
+          />
+
+          <!-- Bottom left: horizontal then curved up -->
+          <path
+            class="connection-path"
+            d="M 90 255 L 200 255 Q 240 255, 240 215 L 240 195 Q 240 175, 260 175 L 300 175"
+          />
+          <path
+            class="fire-spark path2"
+            d="M 90 255 L 200 255 Q 240 255, 240 215 L 240 195 Q 240 175, 260 175 L 300 175"
+          />
+
+          <!-- Right side paths -->
+          <!-- Top right: horizontal then curved down -->
+          <path
+            class="connection-path"
+            d="M 610 95 L 500 95 Q 460 95, 460 135 L 460 155 Q 460 175, 440 175 L 400 175"
+          />
+          <path
+            class="fire-spark path3"
+            d="M 610 95 L 500 95 Q 460 95, 460 135 L 460 155 Q 460 175, 440 175 L 400 175"
+          />
+
+          <!-- Bottom right: horizontal then curved up -->
+          <path
+            class="connection-path"
+            d="M 610 255 L 500 255 Q 460 255, 460 215 L 460 195 Q 460 175, 440 175 L 400 175"
+          />
+          <path
+            class="fire-spark path4"
+            d="M 610 255 L 500 255 Q 460 255, 460 215 L 460 195 Q 460 175, 440 175 L 400 175"
+          />
+        </svg>
+      </div>
+
+      <!-- Nodes -->
+      <div class="node node-top-left">
+        <img src="" alt="Person 1" id="profile-img-ll" />
+      </div>
+
+      <div class="node node-bottom-left">
+        <img src="" alt="Person 2" id="company-profile-ll" />
+      </div>
+
+      <div class="node node-top-right">
+        <img src="" alt="Person 2" id="login-profile-ll" />
+      </div>
+
+      <div class="node node-bottom-right">
+        <img src="" alt="Person 2" id="company-login-ll" />
+      </div>
+
+      <!-- Center Flask Icon -->
+      <div class="center-icon">
+        <img
+          src=""
+          alt="leadlabs logo"
+          style="width: 40px; height: 40px"
+          id="leadlabs-logo-ll"
+        />
+      </div>
+    </div>
+  </body>
+</html>

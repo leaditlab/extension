@@ -1,0 +1,395 @@
+<style>
+  /* styles.css */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .insight-item {
+    margin-bottom: 8px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    gap: 12px;
+    background: #e6f3fa;
+    border-radius: 6px;
+  }
+  .insight-item-sub {
+    margin: 10px 20px;
+  }
+  .icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-top: 2px;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .content h3 {
+    margin-bottom: 4px;
+    font-family: "Manrope";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 24px;
+    letter-spacing: -0.011em;
+    font-feature-settings: "cv09" on, "ss11" on, "calt" off, "liga" off;
+    color: #050e15;
+  }
+
+  .signal-badge {
+    display: flex;
+    align-items: center;
+    padding: 6px 8px;
+    gap: 5px;
+    border-radius: 0px;
+    font-size: 11px;
+    font-weight: 500;
+    margin-bottom: 4px;
+    background-color: #d3e6f0;
+    color: #0d4e60;
+    font-family: "IBM Plex Mono" !important;
+  }
+
+  .loading-circle {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #e2e8f0;
+    border-top: 2px solid #64748b;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  .content-sub {
+    color: #96a6a8 !important;
+  }
+  .insight-item h3 {
+    font-size: 13px !important;
+    font-family: "Manrope" !important;
+    font-weight: 550 !important;
+  }
+  .loader-line-ll {
+    width: 2px;
+    height: 10px;
+    margin-left: 4px;
+    margin-top: 0px;
+    background: rgb(204, 204, 204);
+  }
+  #header-image {
+    height: 120px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+  }
+
+  #header-image::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  #header-image blockquote,
+  #header-image .quote-author {
+    z-index: 1;
+    position: relative;
+  }
+
+  .quote {
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    color: #341b7c;
+    font-style: italic;
+  }
+
+  .quote-author {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 32px;
+    text-align: center;
+    font-feature-settings: "calt" off, "liga" off;
+    color: #0d4e60;
+    font-family: "Manrope", sans-serif;
+  }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
+  rel="stylesheet"
+/>
+<link
+  href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Manrope:wght@200..800&display=swap"
+  rel="stylesheet"
+/>
+<div>
+  <div class="header" id="header-image">
+    <blockquote class="quote" id="quote-ll"></blockquote>
+    <cite class="quote-author"></cite>
+  </div>
+  <div style="padding: 20px">
+    <div class="insight-item">
+      <div class="icon">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g clip-path="url(#clip0_1293_61141)">
+            <path
+              d="M10 17.5C14.1421 17.5 17.5 14.1421 17.5 10C17.5 5.85786 14.1421 2.5 10 2.5C5.85786 2.5 2.5 5.85786 2.5 10C2.5 14.1421 5.85786 17.5 10 17.5Z"
+              stroke="#0D4E60"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M10 12.5C11.7259 12.5 13.125 11.1009 13.125 9.375C13.125 7.64911 11.7259 6.25 10 6.25C8.27411 6.25 6.875 7.64911 6.875 9.375C6.875 11.1009 8.27411 12.5 10 12.5Z"
+              stroke="#0D4E60"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M4.98438 15.5757C5.45462 14.6494 6.17216 13.8715 7.05745 13.3281C7.94275 12.7847 8.96123 12.4971 10 12.4971C11.0388 12.4971 12.0572 12.7847 12.9425 13.3281C13.8278 13.8715 14.5454 14.6494 15.0156 15.5757"
+              stroke="#0D4E60"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </g>
+          <defs>
+            <clipPath id="clip0_1293_61141">
+              <rect width="20" height="20" fill="white" />
+            </clipPath>
+          </defs>
+        </svg>
+      </div>
+      <div class="content">
+        <div style="display: flex; gap: 10px; align-items: center">
+          <h3>Analysing profile...</h3>
+          <span class="signal-badge"
+            ><div class="loading-p-circle"></div>
+            Fetching signals</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-item">
+      <div class="icon">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g clip-path="url(#clip0_1293_61307)">
+            <path
+              d="M1.875 16.875H19.375"
+              stroke="#0D4E60"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M3.75 3.125V16.875"
+              stroke="#0D4E60"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.75 16.875V3.125"
+              stroke="#0D4E60"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M17.5 16.875V6.875"
+              stroke="#0D4E60"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M6.25 6.25H7.5"
+              stroke="#0D4E60"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M10 6.25H11.25"
+              stroke="#0D4E60"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M6.25 9.375H7.5"
+              stroke="#0D4E60"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M10 9.375H11.25"
+              stroke="#0D4E60"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M6.875 16.875V12.5H10.625V16.875"
+              stroke="#0D4E60"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M3.125 3.125H14.375"
+              stroke="#0D4E60"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.75 6.875H18.125"
+              stroke="#0D4E60"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </g>
+          <defs>
+            <clipPath id="clip0_1293_61307">
+              <rect width="20" height="20" fill="white" />
+            </clipPath>
+          </defs>
+        </svg>
+      </div>
+      <div class="content">
+        <div style="display: flex; gap: 10px; align-items: center">
+          <h3>Analysing company...</h3>
+          <span class="signal-badge"
+            ><div class="loading-p-circle"></div>
+            Fetching signals</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-item">
+      <div class="icon">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g clip-path="url(#clip0_1293_61375)">
+            <path
+              d="M16.875 2.5H3.125C2.77982 2.5 2.5 2.77982 2.5 3.125V16.875C2.5 17.2202 2.77982 17.5 3.125 17.5H16.875C17.2202 17.5 17.5 17.2202 17.5 16.875V3.125C17.5 2.77982 17.2202 2.5 16.875 2.5Z"
+              stroke="#0D4E60"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M9.375 8.75V13.75"
+              stroke="#0D4E60"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M6.875 8.75V13.75"
+              stroke="#0D4E60"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M9.375 10.9375C9.375 10.3573 9.60547 9.80094 10.0157 9.3907C10.4259 8.98047 10.9823 8.75 11.5625 8.75C12.1427 8.75 12.6991 8.98047 13.1093 9.3907C13.5195 9.80094 13.75 10.3573 13.75 10.9375V13.75"
+              stroke="#0D4E60"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M6.875 7.5C7.39277 7.5 7.8125 7.08027 7.8125 6.5625C7.8125 6.04473 7.39277 5.625 6.875 5.625C6.35723 5.625 5.9375 6.04473 5.9375 6.5625C5.9375 7.08027 6.35723 7.5 6.875 7.5Z"
+              fill="#0D4E60"
+            />
+          </g>
+          <defs>
+            <clipPath id="clip0_1293_61375">
+              <rect width="20" height="20" fill="white" />
+            </clipPath>
+          </defs>
+        </svg>
+      </div>
+      <div class="content">
+        <div style="display: flex; gap: 10px; align-items: center">
+          <h3>Creating persona...</h3>
+          <span class="signal-badge"
+            ><div class="loading-p-circle"></div>
+            Fetching signals</span
+          >
+        </div>
+      </div>
+    </div>
+    <div class="insight-item">
+      <div class="icon">
+        <svg
+          width="21"
+          height="20"
+          viewBox="0 0 21 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M16.1859 10.0828L12.1563 8.59375L10.6719 4.56094C10.584 4.32213 10.4249 4.11604 10.2162 3.97046C10.0075 3.82488 9.75916 3.74682 9.50469 3.74682C9.25022 3.74682 9.00187 3.82488 8.79316 3.97046C8.58444 4.11604 8.42541 4.32213 8.3375 4.56094L6.84375 8.59375L2.81094 10.0781C2.57213 10.166 2.36604 10.3251 2.22046 10.5338C2.07488 10.7425 1.99683 10.9908 1.99683 11.2453C1.99683 11.4998 2.07488 11.7481 2.22046 11.9568C2.36604 12.1656 2.57213 12.3246 2.81094 12.4125L6.84375 13.9062L8.32813 17.9391C8.41603 18.1779 8.57507 18.384 8.78378 18.5295C8.9925 18.6751 9.24085 18.7532 9.49532 18.7532C9.74979 18.7532 9.99813 18.6751 10.2068 18.5295C10.4156 18.384 10.5746 18.1779 10.6625 17.9391L12.1563 13.9062L16.1891 12.4219C16.4279 12.334 16.634 12.1749 16.7795 11.9662C16.9251 11.7575 17.0032 11.5092 17.0032 11.2547C17.0032 11.0002 16.9251 10.7519 16.7795 10.5432C16.634 10.3344 16.4279 10.1754 16.1891 10.0875L16.1859 10.0828ZM11.4531 12.8297C11.3683 12.861 11.2912 12.9103 11.2273 12.9742C11.1634 13.0381 11.1141 13.1152 11.0828 13.2L9.5 17.4883L7.92031 13.2031C7.8891 13.1174 7.83949 13.0395 7.77498 12.975C7.71046 12.9105 7.63261 12.8609 7.54688 12.8297L3.26172 11.25L7.54688 9.67031C7.63261 9.6391 7.71046 9.58949 7.77498 9.52497C7.83949 9.46046 7.8891 9.3826 7.92031 9.29688L9.5 5.01172L11.0797 9.29688C11.111 9.38171 11.1603 9.45875 11.2242 9.52269C11.2881 9.58662 11.3652 9.63592 11.45 9.66719L15.7383 11.25L11.4531 12.8297ZM12 3.125C12 2.95924 12.0658 2.80027 12.1831 2.68306C12.3003 2.56585 12.4592 2.5 12.625 2.5H13.875V1.25C13.875 1.08424 13.9408 0.925268 14.0581 0.808058C14.1753 0.690848 14.3342 0.625 14.5 0.625C14.6658 0.625 14.8247 0.690848 14.9419 0.808058C15.0592 0.925268 15.125 1.08424 15.125 1.25V2.5H16.375C16.5408 2.5 16.6997 2.56585 16.8169 2.68306C16.9342 2.80027 17 2.95924 17 3.125C17 3.29076 16.9342 3.44973 16.8169 3.56694C16.6997 3.68415 16.5408 3.75 16.375 3.75H15.125V5C15.125 5.16576 15.0592 5.32473 14.9419 5.44194C14.8247 5.55915 14.6658 5.625 14.5 5.625C14.3342 5.625 14.1753 5.55915 14.0581 5.44194C13.9408 5.32473 13.875 5.16576 13.875 5V3.75H12.625C12.4592 3.75 12.3003 3.68415 12.1831 3.56694C12.0658 3.44973 12 3.29076 12 3.125ZM20.125 6.875C20.125 7.04076 20.0592 7.19973 19.9419 7.31694C19.8247 7.43415 19.6658 7.5 19.5 7.5H18.875V8.125C18.875 8.29076 18.8092 8.44973 18.6919 8.56694C18.5747 8.68415 18.4158 8.75 18.25 8.75C18.0842 8.75 17.9253 8.68415 17.8081 8.56694C17.6908 8.44973 17.625 8.29076 17.625 8.125V7.5H17C16.8342 7.5 16.6753 7.43415 16.5581 7.31694C16.4408 7.19973 16.375 7.04076 16.375 6.875C16.375 6.70924 16.4408 6.55027 16.5581 6.43306C16.6753 6.31585 16.8342 6.25 17 6.25H17.625V5.625C17.625 5.45924 17.6908 5.30027 17.8081 5.18306C17.9253 5.06585 18.0842 5 18.25 5C18.4158 5 18.5747 5.06585 18.6919 5.18306C18.8092 5.30027 18.875 5.45924 18.875 5.625V6.25H19.5C19.6658 6.25 19.8247 6.31585 19.9419 6.43306C20.0592 6.55027 20.125 6.70924 20.125 6.875Z"
+            fill="#637477"
+          />
+        </svg>
+      </div>
+      <div class="content">
+        <div style="display: flex; gap: 10px; align-items: center">
+          <h3>Finalizing...</h3>
+          <span class="signal-badge"
+            ><div class="loading-p-circle"></div>
+            Fetching signals</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

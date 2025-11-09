@@ -1,0 +1,489 @@
+<style>
+  /* Search Wrapper */
+  div#search-wrapper-linkdinprofile {
+    width: 100%;
+  }
+  /* Search Box */
+  input#search-input-linkdinprofile {
+    width: 100%;
+    outline: none;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 10px 10px 10px 12px;
+    gap: 8px;
+    background: #ffffff !important;
+    border: 0.5px solid #cacfd8;
+    border-radius: 6px;
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+    font-family: "Manrope";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    font-feature-settings: "calt" off, "liga" off;
+    color: #595959;
+  }
+
+  .gmailProfileCard:hover {
+    cursor: pointer;
+    background-color: #0d4e60;
+    color: #ffffff !important;
+  }
+  .gmailProfileCard:hover .dotdotdot {
+    color: #ffffff;
+  }
+
+  #gmailProfileList {
+    overflow-y: auto;
+    height: 343px;
+    width: 100%;
+  }
+
+  .gmailProfileCard > span {
+    padding: 10px;
+  }
+
+  .gmailProfileCard > img {
+    max-width: 40px;
+    border-radius: 20px;
+    max-height: 40px;
+  }
+  /* Load More Button */
+  div#load_more_profile {
+    padding: 0.5em;
+    margin: auto;
+  }
+  button#load_more_btn_profile,
+  button#startProcess {
+    /*   display: none; */
+    width: 100px;
+    text-align: center;
+    margin: 0 auto;
+    background: #0d4e60;
+    outline: none;
+    border: 1px solid #0d4e60;
+    color: #fff;
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  button#load_more_btn_profile:hover,
+  button#startProcess:hover {
+    background: #0b3a47;
+    border: 1px solid #0b3a47;
+  }
+  button#load_more_btn_profile:active,
+  button#startProcess:active {
+    opacity: 0.8;
+  }
+
+  #showPersonal {
+    width: 78px;
+    padding: 5px 10px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+    display: flex;
+    border: 2px solid rgb(33, 31, 38);
+    border-radius: 20px;
+    margin-right: 15px;
+    cursor: pointer;
+  }
+
+  #showOrganizational {
+    width: auto;
+    border: 1px solid rgb(223, 220, 227);
+    padding: 7px 10px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+    display: flex;
+    border-radius: 20px;
+    margin-right: 15px;
+    cursor: pointer;
+  }
+  #uploadList {
+    width: auto;
+    border: 1px solid rgb(223, 220, 227);
+    padding: 7px 10px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+    display: flex;
+    border-radius: 20px;
+    margin-right: 15px;
+    cursor: pointer;
+  }
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #bec4c4;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+</style>
+<link
+  href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
+  rel="stylesheet"
+/>
+<div>
+  <div class="header-card-ll">
+    <img
+      id="lead-icon-profile-ll"
+      src=""
+      alt="Lead Icon"
+      style="width: 80px; height: auto"
+    />
+    <div id="dragIconLL" class="dragIconLL-icon">
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M6.75098 8.625C6.75098 8.8475 6.685 9.06501 6.56138 9.25002C6.43776 9.43502 6.26206 9.57922 6.0565 9.66437C5.85093 9.74951 5.62473 9.77179 5.4065 9.72838C5.18827 9.68498 4.98782 9.57783 4.83048 9.4205C4.67315 9.26316 4.566 9.06271 4.52259 8.84448C4.47919 8.62625 4.50146 8.40005 4.58661 8.19448C4.67176 7.98891 4.81596 7.81321 5.00096 7.6896C5.18597 7.56598 5.40347 7.5 5.62598 7.5C5.92435 7.5 6.21049 7.61853 6.42147 7.82951C6.63245 8.04048 6.75098 8.32663 6.75098 8.625ZM12.001 7.5C11.7785 7.5 11.561 7.56598 11.376 7.6896C11.191 7.81321 11.0468 7.98891 10.9616 8.19448C10.8765 8.40005 10.8542 8.62625 10.8976 8.84448C10.941 9.06271 11.0481 9.26316 11.2055 9.4205C11.3628 9.57783 11.5633 9.68498 11.7815 9.72838C11.9997 9.77179 12.2259 9.74951 12.4315 9.66437C12.6371 9.57922 12.8128 9.43502 12.9364 9.25002C13.06 9.06501 13.126 8.8475 13.126 8.625C13.126 8.32663 13.0075 8.04048 12.7965 7.82951C12.5855 7.61853 12.2993 7.5 12.001 7.5ZM18.376 9.75C18.5985 9.75 18.816 9.68402 19.001 9.5604C19.186 9.43679 19.3302 9.26109 19.4153 9.05552C19.5005 8.84995 19.5228 8.62375 19.4794 8.40552C19.436 8.1873 19.3288 7.98684 19.1715 7.82951C19.0141 7.67217 18.8137 7.56503 18.5955 7.52162C18.3772 7.47821 18.151 7.50049 17.9455 7.58564C17.7399 7.67078 17.5642 7.81498 17.4406 7.99998C17.317 8.18499 17.251 8.4025 17.251 8.625C17.251 8.92337 17.3695 9.20952 17.5805 9.4205C17.7915 9.63147 18.0776 9.75 18.376 9.75ZM5.62598 14.25C5.40347 14.25 5.18597 14.316 5.00096 14.4396C4.81596 14.5632 4.67176 14.7389 4.58661 14.9445C4.50146 15.15 4.47919 15.3762 4.52259 15.5945C4.566 15.8127 4.67315 16.0132 4.83048 16.1705C4.98782 16.3278 5.18827 16.435 5.4065 16.4784C5.62473 16.5218 5.85093 16.4995 6.0565 16.4144C6.26206 16.3292 6.43776 16.185 6.56138 16C6.685 15.815 6.75098 15.5975 6.75098 15.375C6.75098 15.0766 6.63245 14.7905 6.42147 14.5795C6.21049 14.3685 5.92435 14.25 5.62598 14.25ZM12.001 14.25C11.7785 14.25 11.561 14.316 11.376 14.4396C11.191 14.5632 11.0468 14.7389 10.9616 14.9445C10.8765 15.15 10.8542 15.3762 10.8976 15.5945C10.941 15.8127 11.0481 16.0132 11.2055 16.1705C11.3628 16.3278 11.5633 16.435 11.7815 16.4784C11.9997 16.5218 12.2259 16.4995 12.4315 16.4144C12.6371 16.3292 12.8128 16.185 12.9364 16C13.06 15.815 13.126 15.5975 13.126 15.375C13.126 15.0766 13.0075 14.7905 12.7965 14.5795C12.5855 14.3685 12.2993 14.25 12.001 14.25ZM18.376 14.25C18.1535 14.25 17.936 14.316 17.751 14.4396C17.566 14.5632 17.4218 14.7389 17.3366 14.9445C17.2515 15.15 17.2292 15.3762 17.2726 15.5945C17.316 15.8127 17.4231 16.0132 17.5805 16.1705C17.7378 16.3278 17.9383 16.435 18.1565 16.4784C18.3747 16.5218 18.6009 16.4995 18.8065 16.4144C19.0121 16.3292 19.1878 16.185 19.3114 16C19.435 15.815 19.501 15.5975 19.501 15.375C19.501 15.0766 19.3824 14.7905 19.1715 14.5795C18.9605 14.3685 18.6743 14.25 18.376 14.25Z"
+          fill="#383E44"
+        ></path>
+      </svg>
+    </div>
+    <div class="minimize-container">
+      <!-- <div id="settingIcon" style="display: flex; align-items: center">
+        <svg
+          width="21"
+          height="20"
+          viewBox="0 0 21 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M10.4512 13.125C12.1771 13.125 13.5762 11.7259 13.5762 10C13.5762 8.27411 12.1771 6.875 10.4512 6.875C8.72528 6.875 7.32617 8.27411 7.32617 10C7.32617 11.7259 8.72528 13.125 10.4512 13.125Z"
+            stroke="#717784"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></path>
+          <path
+            d="M3.68809 13.9135C3.34275 13.3187 3.07819 12.6805 2.90137 12.0158L4.2123 10.3752C4.19746 10.1244 4.19746 9.87289 4.2123 9.62207L2.90215 7.98145C3.07866 7.31666 3.34269 6.67827 3.6873 6.08301L5.77402 5.84863C5.94066 5.66089 6.11832 5.48324 6.30605 5.3166L6.54043 3.23066C7.13483 2.88769 7.77219 2.62524 8.43574 2.4502L10.0764 3.76113C10.3272 3.74629 10.5787 3.74629 10.8295 3.76113L12.4701 2.45098C13.1349 2.62749 13.7733 2.89152 14.3686 3.23613L14.6029 5.32285C14.7907 5.48949 14.9683 5.66714 15.135 5.85488L17.2209 6.08926C17.5662 6.68407 17.8308 7.32224 18.0076 7.98691L16.6967 9.62754C16.7115 9.87836 16.7115 10.1298 16.6967 10.3807L18.0068 12.0213C17.8316 12.6859 17.5688 13.3243 17.2256 13.9197L15.1389 14.1541C14.9722 14.3418 14.7946 14.5195 14.6068 14.6861L14.3725 16.7721C13.7776 17.1174 13.1395 17.382 12.4748 17.5588L10.8342 16.2479C10.5834 16.2627 10.3319 16.2627 10.0811 16.2479L8.44043 17.558C7.77584 17.3827 7.13746 17.12 6.54199 16.7768L6.30762 14.69C6.11988 14.5234 5.94222 14.3457 5.77559 14.158L3.68809 13.9135Z"
+            stroke="#717784"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></path>
+        </svg>
+      </div>
+      <div id="centerize-ll" style="display: flex; align-items: center">
+        <svg
+          width="21"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M17 7L7 17"
+            stroke="#717784"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></path>
+          <path
+            d="M15.125 17H7V8.875"
+            stroke="#717784"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></path>
+        </svg>
+      </div> -->
+      <div id="close-profile" style="display: flex; align-items: center">
+        <svg
+          width="21"
+          height="20"
+          viewBox="0 0 20 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M10.0001 8.93906L13.7126 5.22656L14.7731 6.28706L11.0606 9.99956L14.7731 13.7121L13.7126 14.7726L10.0001 11.0601L6.28755 14.7726L5.22705 13.7121L8.93955 9.99956L5.22705 6.28706L6.28755 5.22656L10.0001 8.93906Z"
+            fill="#717784"
+          ></path>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div
+    style="
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      gap: 6px;
+      background: #ffffff;
+      border-bottom: 0.5px solid #e5e5e5;
+      border-radius: 0px;
+      flex: none;
+      order: 1;
+      flex-grow: 0;
+    "
+  >
+    <div id="profile-back-ll">
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M13.5 8H2.5"
+          stroke="#2B303B"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M7 3.5L2.5 8L7 12.5"
+          stroke="#2B303B"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </div>
+    <div
+      style="
+        margin: 0 auto;
+        font-family: 'Manrope';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 20px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        letter-spacing: -0.01em;
+        color: #181b25;
+        flex: none;
+        order: 1;
+        flex-grow: 0;
+      "
+    >
+      Visited Profiles
+    </div>
+    <div></div>
+  </div>
+  <div
+    style="
+      width: 100%;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 4px;
+      display: inline-flex;
+      padding: 10px;
+    "
+  >
+    <div
+      style="
+        width: 100%;
+        background: white;
+        overflow: hidden;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 10px;
+        display: inline-flex;
+      "
+    >
+      <div
+        style="
+          align-items: flex;
+          gap: 2px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          width: 100%;
+        "
+      >
+        <!-- <div
+        style="
+          width: 298.5px;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 8px;
+          display: inline-flex;
+        "
+      > -->
+
+        <div
+          style="
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 24px;
+            letter-spacing: 0.005em;
+            font-feature-settings: 'calt' off, 'liga' off;
+            color: #181b25;
+          "
+        >
+          Select a profile to perform any actions
+        </div>
+        <div
+          style="
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 16px;
+            letter-spacing: 0.005em;
+            font-feature-settings: 'calt' off, 'liga' off;
+            color: #2b303b;
+          "
+        >
+          Profiles analysed with LeadLabs AI
+        </div>
+
+        <!-- </div> -->
+      </div>
+
+      <div
+        style="
+          align-self: stretch;
+          height: 36px;
+          padding-right: 24px;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: flex-start;
+          gap: 10px;
+          display: none;
+        "
+      >
+        <div
+          style="
+            align-self: stretch;
+            padding-right: 24px;
+            justify-content: flex-start;
+            align-items: flex-start;
+            display: none;
+          "
+        >
+          <div id="showPersonal">
+            <div
+              style="
+                color: #211f26;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 20px;
+                word-wrap: break-word;
+              "
+            >
+              Personal
+            </div>
+          </div>
+          <div id="uploadList">
+            <div
+              style="
+                color: #211f26;
+                font-size: 14px;
+                font-weight: 400;
+                word-wrap: break-word;
+              "
+            >
+              Upload Profile
+            </div>
+          </div>
+          <div id="showOrganizational" style="display: none">
+            <div
+              style="
+                color: #211f26;
+                font-size: 14px;
+                font-weight: 400;
+                word-wrap: break-word;
+              "
+            >
+              Organization
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="search-wrapper-linkdinprofile">
+        <input
+          type="search"
+          id="search-input-linkdinprofile"
+          placeholder="Search for Profile"
+        />
+      </div>
+      <div id="gmailProfileList"></div>
+      <div id="load_more_profile">
+        <button id="load_more_btn_profile" type="button">Load More</button>
+      </div>
+      <div id="uploadList-input" style="display: none">
+        <!-- <input type="file" id="profileInput" accept=".csv,.xlsx" /> -->
+        <textarea
+          id="profileInput"
+          rows="10"
+          cols="30"
+          placeholder="Enter linkedinUrl without comma(,) "
+          style="width: 100%"
+        ></textarea>
+        <button id="startProcess" type="button">Submit</button>
+      </div>
+      <div id="profilePop" style="display: none">
+        <div
+          id="profilePopcloseLL"
+          style="width: 24px; height: 24px; position: relative; cursor: pointer"
+        >
+          <div
+            style="
+              width: 16px;
+              height: 16px;
+              left: 4px;
+              top: 4px;
+              position: absolute;
+              display: flex;
+            "
+          >
+            <svg
+              width="24"
+              height="25"
+              viewBox="0 0 24 25"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g id="Dismiss">
+                <path
+                  id="Shape"
+                  d="M4.2097 4.53554L4.29289 4.44133C4.65338 4.08085 5.22061 4.05312 5.6129 4.35814L5.70711 4.44133L12 10.7334L18.2929 4.44133C18.6834 4.05081 19.3166 4.05081 19.7071 4.44133C20.0976 4.83186 20.0976 5.46502 19.7071 5.85554L13.415 12.1484L19.7071 18.4413C20.0676 18.8018 20.0953 19.369 19.7903 19.7613L19.7071 19.8555C19.3466 20.216 18.7794 20.2438 18.3871 19.9387L18.2929 19.8555L12 13.5634L5.70711 19.8555C5.31658 20.2461 4.68342 20.2461 4.29289 19.8555C3.90237 19.465 3.90237 18.8319 4.29289 18.4413L10.585 12.1484L4.29289 5.85554C3.93241 5.49506 3.90468 4.92783 4.2097 4.53554L4.29289 4.44133L4.2097 4.53554Z"
+                  fill="#BCBAC7"
+                />
+              </g>
+            </svg>
+          </div>
+        </div>
+        <div id="gmailProfileDetails"></div>
+      </div>
+    </div>
+  </div>
+</div>

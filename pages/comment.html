@@ -1,0 +1,523 @@
+<style>
+  #commentCardLL {
+    font-family: "Manrope", sans-serif;
+  }
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #bec4c4;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  .post-item {
+    padding: "10px" !important;
+    margin: "5px 0" !important;
+    border: "1px #eceaef solid" !important;
+    cursor: "pointer" !important;
+  }
+  #drag-comment-IconLL {
+    padding: 0px;
+    cursor: grab;
+  }
+
+  #drag-comment-IconLL:active {
+    cursor: grabbing;
+  }
+
+  #drag-comment-IconLL:hover {
+    opacity: 0.9;
+  }
+  .comment-output {
+    padding: 5px;
+    border: 1px #eceaef solid;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    font-family: "Manrope", sans-serif;
+    color: #292e30;
+    font-size: 14px;
+  }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
+  rel="stylesheet"
+/>
+
+<div
+  id="commentCardLL"
+  style="
+    border-radius: 10px;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+    background: white;
+    flex-direction: column;
+    justify-content: flex-start;
+    display: inline-flex;
+  "
+>
+  <div
+    style="
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 10px;
+      background-color: #f8fafb;
+    "
+  >
+    <div>
+      <img id="lead-comment-logo" style="width: 80px; height: auto" />
+    </div>
+    <div id="drag-comment-IconLL">
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M6.75098 8.625C6.75098 8.8475 6.685 9.06501 6.56138 9.25002C6.43776 9.43502 6.26206 9.57922 6.0565 9.66437C5.85093 9.74951 5.62473 9.77179 5.4065 9.72838C5.18827 9.68498 4.98782 9.57783 4.83048 9.4205C4.67315 9.26316 4.566 9.06271 4.52259 8.84448C4.47919 8.62625 4.50146 8.40005 4.58661 8.19448C4.67176 7.98891 4.81596 7.81321 5.00096 7.6896C5.18597 7.56598 5.40347 7.5 5.62598 7.5C5.92435 7.5 6.21049 7.61853 6.42147 7.82951C6.63245 8.04048 6.75098 8.32663 6.75098 8.625ZM12.001 7.5C11.7785 7.5 11.561 7.56598 11.376 7.6896C11.191 7.81321 11.0468 7.98891 10.9616 8.19448C10.8765 8.40005 10.8542 8.62625 10.8976 8.84448C10.941 9.06271 11.0481 9.26316 11.2055 9.4205C11.3628 9.57783 11.5633 9.68498 11.7815 9.72838C11.9997 9.77179 12.2259 9.74951 12.4315 9.66437C12.6371 9.57922 12.8128 9.43502 12.9364 9.25002C13.06 9.06501 13.126 8.8475 13.126 8.625C13.126 8.32663 13.0075 8.04048 12.7965 7.82951C12.5855 7.61853 12.2993 7.5 12.001 7.5ZM18.376 9.75C18.5985 9.75 18.816 9.68402 19.001 9.5604C19.186 9.43679 19.3302 9.26109 19.4153 9.05552C19.5005 8.84995 19.5228 8.62375 19.4794 8.40552C19.436 8.1873 19.3288 7.98684 19.1715 7.82951C19.0141 7.67217 18.8137 7.56503 18.5955 7.52162C18.3772 7.47821 18.151 7.50049 17.9455 7.58564C17.7399 7.67078 17.5642 7.81498 17.4406 7.99998C17.317 8.18499 17.251 8.4025 17.251 8.625C17.251 8.92337 17.3695 9.20952 17.5805 9.4205C17.7915 9.63147 18.0776 9.75 18.376 9.75ZM5.62598 14.25C5.40347 14.25 5.18597 14.316 5.00096 14.4396C4.81596 14.5632 4.67176 14.7389 4.58661 14.9445C4.50146 15.15 4.47919 15.3762 4.52259 15.5945C4.566 15.8127 4.67315 16.0132 4.83048 16.1705C4.98782 16.3278 5.18827 16.435 5.4065 16.4784C5.62473 16.5218 5.85093 16.4995 6.0565 16.4144C6.26206 16.3292 6.43776 16.185 6.56138 16C6.685 15.815 6.75098 15.5975 6.75098 15.375C6.75098 15.0766 6.63245 14.7905 6.42147 14.5795C6.21049 14.3685 5.92435 14.25 5.62598 14.25ZM12.001 14.25C11.7785 14.25 11.561 14.316 11.376 14.4396C11.191 14.5632 11.0468 14.7389 10.9616 14.9445C10.8765 15.15 10.8542 15.3762 10.8976 15.5945C10.941 15.8127 11.0481 16.0132 11.2055 16.1705C11.3628 16.3278 11.5633 16.435 11.7815 16.4784C11.9997 16.5218 12.2259 16.4995 12.4315 16.4144C12.6371 16.3292 12.8128 16.185 12.9364 16C13.06 15.815 13.126 15.5975 13.126 15.375C13.126 15.0766 13.0075 14.7905 12.7965 14.5795C12.5855 14.3685 12.2993 14.25 12.001 14.25ZM18.376 14.25C18.1535 14.25 17.936 14.316 17.751 14.4396C17.566 14.5632 17.4218 14.7389 17.3366 14.9445C17.2515 15.15 17.2292 15.3762 17.2726 15.5945C17.316 15.8127 17.4231 16.0132 17.5805 16.1705C17.7378 16.3278 17.9383 16.435 18.1565 16.4784C18.3747 16.5218 18.6009 16.4995 18.8065 16.4144C19.0121 16.3292 19.1878 16.185 19.3114 16C19.435 15.815 19.501 15.5975 19.501 15.375C19.501 15.0766 19.3824 14.7905 19.1715 14.5795C18.9605 14.3685 18.6743 14.25 18.376 14.25Z"
+          fill="#383E44"
+        />
+      </svg>
+    </div>
+    <div id="comment-closeLL">
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 24 25"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g id="Dismiss">
+          <path
+            id="Shape"
+            d="M4.2097 4.53554L4.29289 4.44133C4.65338 4.08085 5.22061 4.05312 5.6129 4.35814L5.70711 4.44133L12 10.7334L18.2929 4.44133C18.6834 4.05081 19.3166 4.05081 19.7071 4.44133C20.0976 4.83186 20.0976 5.46502 19.7071 5.85554L13.415 12.1484L19.7071 18.4413C20.0676 18.8018 20.0953 19.369 19.7903 19.7613L19.7071 19.8555C19.3466 20.216 18.7794 20.2438 18.3871 19.9387L18.2929 19.8555L12 13.5634L5.70711 19.8555C5.31658 20.2461 4.68342 20.2461 4.29289 19.8555C3.90237 19.465 3.90237 18.8319 4.29289 18.4413L10.585 12.1484L4.29289 5.85554C3.93241 5.49506 3.90468 4.92783 4.2097 4.53554L4.29289 4.44133L4.2097 4.53554Z"
+            fill="#BCBAC7"
+          />
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div
+    style="padding: 10px; height: 76vh; overflow-y: scroll; overflow-x: hidden"
+  >
+    <div
+      style="
+        align-self: stretch;
+        color: black;
+        font-size: 15px;
+        font-family: Manrope;
+        font-weight: 700;
+        line-height: 28px;
+        word-wrap: break-word;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      "
+    >
+      <span id="main-comment-back-ll"
+        ><svg
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M13.5 8H2.5"
+            stroke="#2B303B"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M7 3.5L2.5 8L7 12.5"
+            stroke="#2B303B"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </span>
+      Comments
+    </div>
+    <div
+      style="
+        align-self: stretch;
+        color: black;
+        font-size: 13px;
+        font-family: Manrope;
+        font-weight: 700;
+        line-height: 28px;
+        margin-bottom: 5px;
+        word-wrap: break-word;
+      "
+      id="postWarning"
+    >
+      Scroll to a post to generate the Comment.
+    </div>
+    <div
+      style="
+        align-self: stretch;
+        color: black;
+        font-size: 13px;
+        font-family: Manrope;
+        font-weight: 700;
+        line-height: 28px;
+        word-wrap: break-word;
+        display: none;
+      "
+      id="postHeading"
+    >
+      Your are currently viewing these posts:
+      <div
+        style="
+          font-size: 11px;
+          font-family: 'Manrope';
+          color: #666;
+          margin-top: -7px;
+          margin-bottom: 8px;
+        "
+      >
+        Select a post to generate comment
+      </div>
+    </div>
+    <div id="notification-comment-ll" class="notification-ll">Success!</div>
+    <div
+      style="
+        align-self: stretch;
+        color: black;
+        font-size: 14px;
+        font-family: Manrope;
+        font-weight: 500;
+        line-height: 28px;
+        margin-bottom: 7px;
+        word-wrap: break-word;
+      "
+      id="postcontent"
+    ></div>
+
+    <div
+      style="
+        align-self: stretch;
+        color: black;
+        font-size: 14px;
+        font-family: Manrope;
+        font-weight: 500;
+        line-height: 28px;
+        margin-bottom: 10px;
+        word-wrap: break-word;
+      "
+    >
+      What kind of a comment would you like to add?
+    </div>
+    <div style="border-radius: 8px; border: 1px #eceaef solid">
+      <div
+        id="supportBlockLL"
+        style="
+          cursor: pointer;
+          align-self: stretch;
+          padding: 12px;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 10px;
+          display: inline-flex;
+          padding-bottom: 0px;
+        "
+      >
+        <div style="width: 32px; height: 32px; position: relative">
+          <div
+            style="
+              width: 7px;
+              height: 13px;
+              left: 3px;
+              top: 13px;
+              position: absolute;
+              opacity: 0.2;
+              background: #0d4e60;
+            "
+          ></div>
+
+          <div
+            style="
+              width: 28px;
+              height: 25px;
+              left: 1px;
+              top: 1px;
+              position: absolute;
+            "
+          >
+            <svg
+              width="32"
+              height="33"
+              viewBox="0 0 32 33"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g id="ThumbsUp">
+                <path
+                  id="Vector"
+                  opacity="0.2"
+                  d="M10 13.1484V26.1484H4C3.73478 26.1484 3.48043 26.0431 3.29289 25.8555C3.10536 25.668 3 25.4137 3 25.1484V14.1484C3 13.8832 3.10536 13.6289 3.29289 13.4413C3.48043 13.2538 3.73478 13.1484 4 13.1484H10Z"
+                  fill="#0D4E60"
+                />
+                <path
+                  id="Vector_2"
+                  d="M29.25 10.1634C28.9684 9.84434 28.6222 9.58881 28.2342 9.41381C27.8463 9.23881 27.4256 9.14835 27 9.14844H20V7.14844C20 5.82236 19.4732 4.55059 18.5355 3.6129C17.5979 2.67522 16.3261 2.14844 15 2.14844C14.8142 2.1483 14.6321 2.19993 14.474 2.29751C14.3159 2.3951 14.1881 2.5348 14.105 2.70094L9.3825 12.1484H4C3.46957 12.1484 2.96086 12.3592 2.58579 12.7342C2.21071 13.1093 2 13.618 2 14.1484V25.1484C2 25.6789 2.21071 26.1876 2.58579 26.5627C2.96086 26.9377 3.46957 27.1484 4 27.1484H25.5C26.2309 27.1487 26.9367 26.8821 27.485 26.3988C28.0332 25.9154 28.3861 25.2486 28.4775 24.5234L29.9775 12.5234C30.0307 12.101 29.9933 11.672 29.8679 11.2651C29.7424 10.8582 29.5318 10.4827 29.25 10.1634ZM4 14.1484H9V25.1484H4V14.1484ZM27.9925 12.2734L26.4925 24.2734C26.462 24.5152 26.3444 24.7374 26.1617 24.8986C25.9789 25.0597 25.7436 25.1485 25.5 25.1484H11V13.3847L15.5887 4.20594C16.2689 4.34206 16.8808 4.70963 17.3204 5.24612C17.76 5.7826 18.0002 6.45484 18 7.14844V10.1484C18 10.4137 18.1054 10.668 18.2929 10.8555C18.4804 11.0431 18.7348 11.1484 19 11.1484H27C27.1419 11.1484 27.2822 11.1785 27.4115 11.2369C27.5409 11.2952 27.6563 11.3805 27.7502 11.4869C27.8441 11.5933 27.9143 11.7185 27.956 11.8541C27.9978 11.9897 28.0102 12.1326 27.9925 12.2734Z"
+                  fill="#0D4E60"
+                />
+              </g>
+            </svg>
+          </div>
+        </div>
+        <div
+          style="
+            flex: 1 1 0;
+            color: #0d4e60;
+            font-size: 14px;
+            font-family: Manrope;
+            font-weight: 700;
+            line-height: 24px;
+            word-wrap: break-word;
+          "
+        >
+          Supporting
+        </div>
+      </div>
+
+      <div
+        id="supportCommentBlockLL"
+        style="
+          display: none;
+          padding: 12px;
+          margin-bottom: 15px;
+          flex-direction: column;
+          padding-bottom: 0px;
+        "
+      >
+        <div
+          class="commentSection"
+          style="
+            align-self: stretch;
+            color: black;
+            font-size: 14px;
+            font-family: Manrope;
+            font-weight: 500;
+            line-height: 28px;
+            margin-bottom: 0px;
+            word-wrap: break-word;
+            margin-left: 5px;
+          "
+        >
+          Choose comment tone
+        </div>
+        <div class="commentSection">
+          <div id="supportformal" class="btn-comment">Formal</div>
+          <div id="supportneutral" class="btn-comment">Neutral</div>
+          <div id="supportcasual" class="btn-comment">Casual</div>
+        </div>
+
+        <div class="commentSection">
+          <p
+            style="
+              align-self: stretch;
+              color: black;
+              font-size: 14px;
+              font-family: Manrope;
+              font-weight: 500;
+              line-height: 28px;
+              margin-bottom: 0px;
+              word-wrap: break-word;
+              margin-left: 5px;
+            "
+          >
+            Choose a comment style
+          </p>
+          <div id="supportsh" class="btn-comment">Sarcasm & Humor</div>
+          <div id="supporti" class="btn-comment">Insightful</div>
+          <div id="supportshs" class="btn-comment">Sarcasm & Humor - Short</div>
+          <div id="supportc" class="btn-comment">Conversational</div>
+          <div id="supportd" class="btn-comment">Delighted</div>
+        </div>
+        <div
+          id="supportingCommentLL-title"
+          style="
+            align-self: stretch;
+            color: black;
+            font-size: 14px;
+            font-family: Manrope;
+            font-weight: 550;
+            line-height: 28px;
+            overflow-wrap: break-word;
+
+            margin-bottom: 5px;
+            display: none;
+          "
+        >
+          Generated Comments
+        </div>
+        <div id="supportingCommentLL" style="color: black"></div>
+        <div id="loadersupportingCommentLL" style="color: black"></div>
+      </div>
+    </div>
+    <div
+      style="border-radius: 8px; border: 1px #eceaef solid; margin-top: 15px"
+    >
+      <div
+        id="contraBlockLL"
+        style="
+          cursor: pointer;
+          align-self: stretch;
+          padding: 12px;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 10px;
+          display: inline-flex;
+          padding-bottom: 0px;
+        "
+      >
+        <div style="width: 32px; height: 32px; position: relative">
+          <div
+            style="
+              width: 7px;
+              height: 13px;
+              left: 3px;
+              top: 6px;
+              position: absolute;
+              opacity: 0.2;
+              background: #0d4e60;
+            "
+          ></div>
+          <div
+            style="
+              width: 28px;
+              height: 25px;
+              left: 1px;
+              top: 1px;
+              position: absolute;
+            "
+          >
+            <svg
+              width="32"
+              height="33"
+              viewBox="0 0 32 33"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g id="ThumbsDown">
+                <path
+                  id="Vector"
+                  opacity="0.2"
+                  d="M10 6.14844V19.1484H4C3.73478 19.1484 3.48043 19.0431 3.29289 18.8555C3.10536 18.668 3 18.4137 3 18.1484V7.14844C3 6.88322 3.10536 6.62887 3.29289 6.44133C3.48043 6.25379 3.73478 6.14844 4 6.14844H10Z"
+                  fill="#0D4E60"
+                />
+                <path
+                  id="Vector_2"
+                  d="M29.9775 19.7734L28.4775 7.77344C28.3861 7.04829 28.0332 6.38144 27.485 5.8981C26.9367 5.41476 26.2309 5.14819 25.5 5.14844H4C3.46957 5.14844 2.96086 5.35915 2.58579 5.73422C2.21071 6.1093 2 6.618 2 7.14844V18.1484C2 18.6789 2.21071 19.1876 2.58579 19.5627C2.96086 19.9377 3.46957 20.1484 4 20.1484H9.3825L14.105 29.5959C14.1881 29.7621 14.3159 29.9018 14.474 29.9994C14.6321 30.0969 14.8142 30.1486 15 30.1484C16.3261 30.1484 17.5979 29.6217 18.5355 28.684C19.4732 27.7463 20 26.4745 20 25.1484V23.1484H27C27.4257 23.1486 27.8466 23.0581 28.2346 22.8831C28.6227 22.708 28.9691 22.4524 29.2507 22.1331C29.5323 21.8139 29.7428 21.4384 29.8681 21.0315C29.9934 20.6247 30.0307 20.1958 29.9775 19.7734ZM9 18.1484H4V7.14844H9V18.1484ZM27.75 20.8097C27.6568 20.9169 27.5415 21.0027 27.4121 21.0611C27.2826 21.1196 27.142 21.1494 27 21.1484H19C18.7348 21.1484 18.4804 21.2538 18.2929 21.4413C18.1054 21.6289 18 21.8832 18 22.1484V25.1484C18.0002 25.842 17.76 26.5143 17.3204 27.0508C16.8808 27.5872 16.2689 27.9548 15.5887 28.0909L11 18.9122V7.14844H25.5C25.7436 7.14835 25.9789 7.23721 26.1617 7.39832C26.3444 7.55944 26.462 7.78172 26.4925 8.02344L27.9925 20.0234C28.0112 20.1642 27.9993 20.3074 27.9574 20.4431C27.9155 20.5789 27.8448 20.7039 27.75 20.8097Z"
+                  fill="#0D4E60"
+                />
+              </g>
+            </svg>
+          </div>
+        </div>
+        <div
+          style="
+            flex: 1 1 0;
+            color: #0d4e60;
+            font-size: 14px;
+            font-family: Manrope;
+            font-weight: 700;
+            line-height: 24px;
+            word-wrap: break-word;
+          "
+        >
+          Contradictory
+        </div>
+      </div>
+      <div
+        id="contraCommentBlockLL"
+        style="
+          display: none;
+          padding: 12px;
+          margin-bottom: 25px;
+          flex-direction: column;
+          padding-bottom: 0px;
+        "
+      >
+        <div
+          class="commentSection"
+          style="
+            align-self: stretch;
+            color: black;
+            font-size: 14px;
+            font-family: Manrope;
+            font-weight: 500;
+            line-height: 28px;
+            margin-bottom: 0px;
+            word-wrap: break-word;
+            margin-left: 5px;
+          "
+        >
+          Choose comment tone
+        </div>
+        <div class="commentSection">
+          <div id="contraformal" class="btn-comment">Formal</div>
+          <div id="contraneutral" class="btn-comment">Neutral</div>
+          <div id="contracasual" class="btn-comment">Casual</div>
+        </div>
+        <div class="commentSection">
+          <p
+            style="
+              align-self: stretch;
+              color: black;
+              font-size: 14px;
+              font-family: Manrope;
+              font-weight: 500;
+              line-height: 28px;
+              margin-bottom: 0px;
+              word-wrap: break-word;
+              margin-left: 5px;
+            "
+          >
+            Choose comment style
+          </p>
+          <div id="contrash" class="btn-comment">Sarcasm & Humor</div>
+          <div id="contrai" class="btn-comment">Insightful</div>
+          <div id="contrashs" class="btn-comment">Sarcasm & Humor - Short</div>
+        </div>
+        <div
+          id="contradictoryCommentLL-title"
+          style="
+            align-self: stretch;
+            color: black;
+            font-size: 14px;
+            font-family: Manrope;
+            font-weight: 550;
+            line-height: 28px;
+            overflow-wrap: break-word;
+            display: none;
+          "
+        >
+          Generated Comments
+        </div>
+        <div id="contradictoryCommentLL" style="color: black"></div>
+        <div id="loadercontradictoryCommentLL" style="color: black"></div>
+      </div>
+    </div>
+    <span id="postLL" style="display: none"> </span>
+    <span id="commentRefreshLL" style="display: none"> </span>
+  </div>
+</div>

@@ -1,0 +1,158 @@
+<style>
+    #mobileLL {
+        overflow: auto;
+        position: relative;
+    }
+
+    #watchLL {
+        overflow: auto;
+        position: relative;
+        margin-top: 50px;
+    }
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #bec4c4;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    #mobileTextSubject {
+        position: absolute;
+        top: 60px;
+        width: 180px;
+        font-size: 9px;
+        margin-left: 25px;
+        max-height: 50px;
+    }
+
+    #mobileText {
+        position: absolute;
+        top: 115px;
+        width: 190px;
+        font-size: 9px;
+        margin-left: 27px;
+        max-height: 305px;
+        overflow-y: auto;
+    }
+
+    #mobileText > div {
+        margin-top: 5px;
+    }
+
+    #mobileText>img,
+    #mobileText>div>img,
+    #mobileText>div>div>img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+
+    #watchTextSubject {
+        position: absolute;
+        top: 83px;
+        width: 100px;
+        font-size: 10px;
+        margin-left: 65px;
+    }
+
+    #watchText {
+        position: absolute;
+        top: 115px;
+        width: 125px;
+        font-size: 10px;
+        margin-left: 40px;
+        max-height: 100px;
+        overflow-y: auto;
+    }
+
+    #watchText>img,
+    #watchText>div>img,
+    #watchText>div>div>img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+
+    #userNameLL{
+    display: block;
+    position: absolute;
+    top: 92px;
+    font-size: 10px;
+    left: 45px;
+    text-transform: capitalize;
+    }
+
+    #userNameLogoLL{
+    display: block;
+    position: absolute;
+    top: 90px;
+    font-size: 10px;
+    left: 24px;
+    background: #5B5BD6;
+    padding: 2px 5px;
+    font-weight: 600;
+    border-radius: 10px;
+    color: #FFFFFF;
+    text-transform: capitalize;
+    }
+</style>
+
+<div
+    style="background: white; overflow: hidden; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 10px; display: inline-flex">
+    <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
+        <div style="width: 298.50px; justify-content: flex-start; align-items: center; gap: 8px; display: inline-flex">
+            <div style="color: #211F26; font-size: 20px;  font-weight: 700; line-height: 28px; word-wrap: break-word">
+                Preview</div>
+        </div>
+
+        <div style="color: #65636D; font-size: 14px;  font-weight: 400; line-height: 20px; word-wrap: break-word">
+            Preview what your mail will look like on other devices</div>
+    </div>
+    <div
+        style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 10px; display: inline-flex">
+        <div style="cursor: pointer; justify-content: center; align-items: flex-start; gap: 10px; display: flex">
+            <div id="previewPhone"
+                style="border-radius: 100px; border: 2px #211F26 solid; padding: 4px 8px; color: #211F26; font-size: 14px;  font-weight: 400; line-height: 20px; word-wrap: break-word">
+                Mobile</div>
+        </div>
+        <div style="cursor: pointer; justify-content: center; align-items: center; gap: 10px; display: flex">
+            <div id="previewWatch"
+                style="color: #65636D; font-size: 14px; border-radius: 100px; border: 1px #DFDCE3 solid;  padding: 4px 8px; font-weight: 400; line-height: 20px; word-wrap: break-word">
+                Smart watch</div>
+        </div>
+    </div>
+    <div id="mobileLL" style="margin-left: auto; margin-right: auto;">
+        <div id="userNameLogoLL">O</div>
+        <div id="userNameLL">User Name</div>
+        <img id="mobileLLImg" style="max-width: 250px;" />
+        <div id="mobileTextSubject">
+        </div>
+        <div id="mobileText">
+        </div>
+    </div>
+    <div id="watchLL" style="display: none; margin-right:auto; margin-left: auto;">
+        <img id="watchLLImg" style="width:200px;" />
+        <div id="watchTextSubject">
+        </div>
+        <div id="watchText">
+        </div>
+    </div>
+    <div style="width: 234px; height: 12px; position: relative"></div>
+</div>
+<script>
+    //document.getElementById("score").style.display = "block";
+
+
+</script>

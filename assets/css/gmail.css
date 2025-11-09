@@ -1,0 +1,807 @@
+/* Tooltip text */
+.tooltipLL .tooltiptextLL {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+
+  opacity: 0;
+  transition: visibility 0.3s linear, opacity 0.3s linear;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltipLL:hover .tooltiptextLL {
+  visibility: visible;
+  opacity: 0.9;
+}
+
+#PopupProfiles {
+  cursor: pointer;
+  border: none;
+  float: right;
+  top: 75px;
+  position: absolute;
+  right: 0px;
+  border-radius: 10px;
+  padding: 0px;
+  background: transparent;
+}
+
+#PopupGif {
+  cursor: pointer;
+  border: none;
+  float: right;
+  top: 125px;
+  position: absolute;
+  right: 0px;
+  border-radius: 10px;
+  padding: 0px;
+  background: transparent;
+}
+
+#PopupScore {
+  cursor: pointer;
+  border: none;
+  float: right;
+  top: 175px;
+  position: absolute;
+  right: 0px;
+  border-radius: 10px;
+  padding: 0px;
+  background: transparent;
+}
+
+#PopupMicrosite {
+  cursor: pointer;
+  border: none;
+  float: right;
+  top: 225px;
+  position: absolute;
+  right: 0px;
+  border-radius: 10px;
+  padding: 0px;
+  background: transparent;
+  /* for now */
+  display: none;
+}
+
+#PopupEmail {
+  cursor: pointer;
+  border: none;
+  float: right;
+  top: 225px;
+  position: absolute;
+  right: 0px;
+  border-radius: 10px;
+  padding: 0px;
+  background: transparent;
+}
+
+#PopupPreview {
+  cursor: pointer;
+  border: none;
+  float: right;
+  top: 275px;
+  position: absolute;
+  right: 0px;
+  border-radius: 10px;
+  padding: 0px;
+  background: transparent;
+}
+
+#PopupNotification {
+  cursor: pointer;
+  border: none;
+  float: right;
+  top: 375px;
+  position: absolute;
+  right: 0px;
+  border-radius: 10px;
+  padding: 0px;
+  background: transparent;
+  /* for now */
+  display: none;
+}
+
+#PopupLogout {
+  /* for now */
+  display: none;
+  cursor: pointer;
+  border: none;
+  float: right;
+  top: 425px;
+  position: absolute;
+  right: 0px;
+  border-radius: 10px;
+  padding: 0px;
+  background: transparent;
+}
+
+#revaaloLL {
+  width: 320px;
+  height: 590px;
+  display: none;
+  position: absolute;
+  /*   top: 0px; */
+  top: -50px;
+  right: 65px;
+  border: 1px solid #e5ebff;
+  border-radius: 5px;
+  background-color: #ffffff;
+  padding: 15px;
+}
+
+#revaaloLLWrapper {
+  width: 385px;
+  height: 50px;
+  position: absolute;
+  display: none;
+  top: -40px;
+  right: 200px;
+  background-color: transparent;
+  z-index: 100;
+}
+
+#leadlabsIcon {
+  position: absolute;
+  /*   bottom: 255px; */
+  bottom: 115px;
+  right: 5px;
+  display: block;
+  padding: 0px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+#gifPop {
+  display: block;
+  position: absolute;
+  width: 257px;
+  padding: 5px 20px;
+  background: #ffffff;
+  z-index: 100;
+  border: 1px solid #cccccc;
+  top: 85px;
+  overflow-y: scroll;
+  max-height: 700px;
+}
+
+#gifPopImg {
+  display: inline-block;
+  max-width: 100%;
+}
+
+#gifcloseLL {
+  float: right;
+  margin-bottom: 10px;
+}
+
+.childgif {
+  width: 300px;
+}
+
+.childgif > div > img {
+  max-width: 60%;
+  margin: 0px;
+}
+
+.gif-container > img {
+  cursor: pointer;
+}
+
+.gif-container {
+  position: relative;
+  cursor: pointer;
+}
+
+.overlayLL {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color: #5b5bd6;
+}
+
+.gif-container:hover .overlayLL {
+  opacity: 0.5;
+}
+
+.overlayLL > .text {
+  color: white;
+  font-size: 15px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+#profilePop {
+  display: block;
+  position: absolute;
+  height: 650px;
+  top: 0px;
+  width: 400px;
+  left: -40px;
+}
+
+#gmailProfileDetails > div {
+  padding: 10px;
+  background: white;
+  box-shadow: 0px 0px 8px rgba(162.56, 162.56, 162.56, 0.2);
+  border-radius: 8px;
+  overflow: auto;
+  border: 1px #dfdce3 solid;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+  display: inline-flex;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 575px !important;
+  width: auto !important;
+}
+
+#profilePopcloseLL {
+  position: absolute !important;
+  right: 15px;
+}
+
+#closeLL {
+  display: none;
+}
+
+.dotdotdot {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #222;
+}
+
+#reloadPageLL {
+  display: none;
+  background: #ffffff;
+  border-radius: 5px;
+  width: 200px;
+  padding: 10px;
+  font-size: 14px;
+  position: absolute;
+  right: 6px;
+  bottom: 175px;
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+#reloadPageLL > button {
+  padding: 5px 15px;
+  border-radius: 5px;
+  transition: background-color 250ms;
+  color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+  border: 1px solid #5b5bd6;
+  background-color: #5b5bd6;
+  margin-top: 15px;
+}
+
+#reloadPageLL > button:hover {
+  color: #5b5bd6;
+  background-color: #ffffff;
+  border: 1px solid #5b5bd6;
+}
+
+.h5ll {
+  font-size: 14px;
+  background-color: #fff5d2;
+  padding: 0px 6px 0px 4px;
+  margin: 0px;
+  padding: 0px;
+  margin: 13px 0px;
+  display: inline-block;
+  color: black;
+}
+
+#leftNavll,
+#gmailProfileDetails > #closeLL,
+#JoiningTheDots {
+  display: none !important;
+}
+
+/* added css  */
+#profileAboutSection,
+#profileExperienceSection {
+  margin-top: -10px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 5px;
+  line-height: 21px;
+  display: flow-root;
+  width: 100%;
+}
+
+#profileAboutSection > div {
+  font-size: 14px !important;
+  font-family: "Manrope", sans-serif !important;
+  font-weight: 500;
+  line-height: 21px;
+  color: #65636d;
+  text-align: justify;
+}
+
+.experiancell > p {
+  font-size: 14px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 500;
+  line-height: 21px;
+  color: #65636d;
+  text-align: justify;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 50px;
+}
+.experiancell > img {
+  float: left;
+  /* margin-top: -40px; */
+  width: 36px;
+  height: 36px;
+}
+.experiancell {
+  margin-bottom: 15px !important;
+  /* border-bottom: 1px solid #65636d; */
+  line-height: 21px !important;
+}
+.samecompany-section {
+  margin-left: 50px;
+}
+.samecompany-section > ul > li > p,
+.samecompany-section > p {
+  font-size: 14px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 500;
+  line-height: 21px;
+  color: #65636d;
+  text-align: justify;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.fw-600 {
+  font-weight: 600 !important;
+}
+
+#profileExperienceSection > h3,
+#profileRolesAndResp > h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #222;
+  font-family: "Manrope", sans-serif;
+  line-height: normal;
+  margin-bottom: 10px;
+}
+
+.collapsedll {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3; /* Number of lines to show */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profileblockll > div {
+  font-family: "Manrope", sans-serif !important;
+  color: #292e30;
+}
+
+#toggleArrowll,
+#experienceToggleArrowll,
+#respToggleArrowll {
+  font-size: 10px;
+  font-weight: 500;
+  font-family: "Manrope", sans-serif;
+  float: right;
+}
+
+#toggleTextll,
+#experienceToggleTextll,
+#respToggleTextll {
+  font-size: 12px;
+  font-weight: 500;
+  font-family: "Manrope", sans-serif;
+  /* float: right; */
+  cursor: pointer;
+  display: flex;
+  justify-content: end;
+  float: none;
+}
+
+#profileAboutSection:hover {
+  background-color: #eee;
+}
+
+#allPosts > div,
+#commentsPosts > div,
+#reactionsPosts > div {
+  border: 1px solid #cccccc;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.posttitlell {
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.overlayBtnll {
+  background-color: #e80d8e;
+  padding: 5px 8px;
+  color: #ffffff;
+  margin-top: 15px;
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.postll {
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.posttimell {
+  font-size: 12px;
+  text-align: left;
+  font-style: italic;
+  color: #666666;
+  text-transform: lowercase;
+  font-family: "IBM Plex Mono" !important;
+}
+
+.detailsll {
+  display: none;
+  background-color: #f5f7f7;
+  padding: 8px;
+  border-radius: 5px;
+  font-family: "Manrope", sans-serif !important;
+}
+
+.posttitlell {
+  font-weight: bold;
+  float: left;
+  color: black;
+}
+
+.detailsll .quotes {
+  display: table;
+  background-color: #f3f3ff;
+  color: #5b5bd6;
+  padding: 0px 3px;
+  font-style: italic;
+  margin: 10px 0px;
+  font-family: "Manrope", sans-serif !important;
+}
+
+.tagsll {
+  display: flex;
+  margin-top: 9px;
+  float: right;
+}
+
+.tagsll > :first-child {
+  margin-right: 10px;
+  color: #61be52;
+  font-weight: 600;
+  background-color: #f5fff3;
+  padding: 3px 10px;
+  border-radius: 25px;
+  font-family: "Manrope", sans-serif;
+}
+
+.tagsll > :nth-child(2) {
+  margin-right: 10px;
+  color: #5b8cd6;
+  font-weight: 600;
+  background-color: #f3fbff;
+  padding: 3px 10px;
+  border-radius: 25px;
+  font-family: "Manrope", sans-serif;
+}
+
+.postll > .summary {
+  clear: both;
+  background: linear-gradient(to right, #e7faff 0%, #ffffff 47%, #f5fdff 100%);
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 8px;
+  font-family: "Manrope", sans-serif !important;
+}
+
+.detailsll > .posttitlell {
+  float: none;
+}
+
+.overviewll,
+.fundingDatall {
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  font-family: "Manrope", sans-serif;
+}
+
+.mvll {
+  font-size: 14px;
+  font-family: "Manrope", sans-serif;
+}
+
+.overviewll > .summary > div:first-child,
+.wedsitell > div:first-child,
+.Industryll > div:first-child,
+.companysizell > div:first-child,
+.foundll > div:first-child {
+  font-weight: 600;
+  font-family: "Manrope", sans-serif;
+}
+.overviewll > .summary > div:nth-child(2) {
+  text-align: justify;
+}
+.overviewll > div,
+.overviewll > div > div {
+  font-family: "Manrope", sans-serif;
+}
+
+.primarytagll {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 8px 2px 4px;
+  gap: 2px;
+  background: #f0fcf8;
+  border-radius: 0px;
+  color: #3d8470;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 13px;
+  margin-right: 10px;
+  font-family: "Manrope", sans-serif !important;
+}
+
+.secondarytagll {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 8px 2px 4px;
+  gap: 2px;
+  background: #ebf1ff;
+  border-radius: 0px;
+  color: #3559e9;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 12px;
+  margin-right: 10px;
+  font-family: "Manrope", sans-serif !important;
+  letter-spacing: 1px;
+  line-height: 16px;
+}
+.segmentll {
+  margin-right: 10px;
+  font-weight: 600;
+}
+.market-sub-ll {
+  display: flex;
+}
+.btltitlell,
+.atltitlell,
+.marketsegll,
+.verticalsll {
+  margin-top: 10px;
+  padding: 5px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+}
+.btltitlell > h3,
+.atltitlell > h3,
+.marketsegll > h4,
+.verticalsll > h4 {
+  font-size: 14px;
+  font-weight: 600 !important;
+  color: #222;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-family: "Manrope", sans-serif;
+  line-height: normal;
+}
+#companyDetailsImgLL > img {
+  margin-right: 10px;
+  max-width: 75px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+.overviewll > .summary > div:first-child,
+.wedsitell > div:first-child,
+.Industryll > div:first-child,
+.companysizell > div:first-child,
+.foundll > div:first-child {
+  font-weight: 600 !important;
+  font-family: "Manrope", sans-serif;
+}
+.ccompanyll > div:first-child,
+.cnewsDescriptionll > div:first-child,
+.cnewsnamell {
+  font-weight: 600;
+}
+.cnewsnamell,
+.ccompanyll > div,
+.cnewsDescriptionll > div,
+.cnewssource > div,
+.cnewssource > a,
+.datetimell,
+.cnewsDescriptionll {
+  font-size: 14px;
+  font-family: "Manrope", sans-serif !important;
+}
+
+.cnewssource > a {
+  border: 1px solid #5b5bd6;
+  border-radius: 5px;
+  padding: 0px 5px;
+  float: left;
+  font-size: 12px;
+  color: #5b5bd6;
+}
+.cnewsll {
+  /* border: 1px solid lightgray; */
+  border-radius: 5px;
+  padding: 5px;
+  font-family: "Manrope", sans-serif;
+  margin: 5px;
+  float: left;
+}
+.cnewsll {
+  clear: both;
+  margin-bottom: 20px;
+  color: black;
+}
+.noDataFound {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgb(34, 34, 34);
+  font-family: "Manrope", sans-serif;
+}
+.peoplell > div {
+  font-family: "Manrope", sans-serif;
+}
+.bar-inner {
+  height: 100%;
+  background-color: #47c280;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 5px;
+}
+.category-techstackll {
+  cursor: pointer;
+  margin: 7px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #fafafa;
+  font-size: 14px;
+  font-family: "Manrope", sans-serif !important;
+  border-radius: 5px;
+}
+
+.subcategory-techstackll {
+  display: none;
+  margin-left: 20px;
+  padding: 10px;
+  border: 1px solid #eee;
+  background-color: #fafafa;
+  font-size: 12px;
+  font-family: "Manrope", sans-serif;
+}
+
+.subcategory-techstackll > div {
+  margin-bottom: 5px;
+  font-family: "Manrope", sans-serif;
+}
+
+.subcategory-techstackll img {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+  vertical-align: middle;
+  border-radius: 3px;
+}
+#companyLinesLL > .text-container {
+  display: table;
+  background-color: rgb(243, 243, 255);
+  color: rgb(91, 91, 214);
+  font-style: italic;
+  padding: 0px 3px;
+  margin: 10px 0px;
+}
+.naviconLL {
+  padding: 2px;
+  margin: 15px 5px;
+  border-radius: 7px;
+  text-align: center;
+}
+
+.naviconLL.active {
+  background-color: #6b6bce;
+}
+
+.naviconLL:hover {
+  background-color: #6b6bce;
+  cursor: pointer;
+}
+
+.naviconLL > svg {
+  width: 20px !important;
+  height: auto !important;
+  padding-top: 3px;
+}
+#leftNavll > #dragIconLL,
+#parsonaListing {
+  display: none;
+}
+.profileblockll > img {
+  width: 50px;
+  height: 50px;
+  float: left;
+  font-size: 9px;
+  padding: 5px;
+  border-radius: 10px;
+}
+.btl > h2,
+.atl > h2 {
+  font-size: 15px;
+  font-weight: 600;
+  color: rgb(34, 34, 34);
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-family: "Manrope", sans-serif;
+  line-height: normal;
+}
+.btltitlell ul,
+.atltitlell ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.btltitlell ul li:not(:first-child),
+.atltitlell ul li:not(:first-child) {
+  display: none;
+}
+
+.btltitlell:hover,
+.atltitlell:hover {
+  background-color: #eeeeee;
+  cursor: pointer;
+}
+.ccompanyDescriptionll {
+  margin-bottom: 10px !important;
+}
+
+.companysizell,
+.wedsitell,
+.foundll,
+.Industryll {
+  margin-top: 10px;
+}

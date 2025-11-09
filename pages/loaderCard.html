@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lead Container</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Manrope:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Sans"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <style>
+      .profile-sub-container {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: start;
+        cursor: pointer;
+        text-align: center;
+        border-width: initial;
+        border-style: none;
+        border-color: initial;
+        border-image: initial;
+        margin: auto !important;
+        box-sizing: border-box;
+        background: var(--neutral-0, #ffffff);
+        border: 1px solid #cacfd8;
+        box-shadow: 0px 4px 6px -4px rgba(24, 39, 75, 0.12),
+          0px 8px 8px -4px rgba(24, 39, 75, 0.08);
+        border-radius: 6px;
+        box-shadow: 0px 6px 12px -6px #18274b1f;
+        border: 0.5px solid var(--neutral-300, #cacfd8);
+        width: 100%;
+        height: 45vh;
+        /* min-width: 430px; */
+        margin-right: 0px !important;
+      }
+      .header-card-ll {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 4px 12px;
+        background: linear-gradient(180deg, #edf7fd 0%, #ffffff 100%);
+        border-radius: 6px 6px 0px 0px;
+      }
+      .profile-sub-container-2 {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+      .user-info-ll {
+        border-radius: 8px 8px 4px 4px;
+        gap: 10px;
+        opacity: 1;
+        border: none;
+        padding: 8px;
+        background: #d9f2ff;
+      }
+      .profile-content-container {
+        border-radius: radius-8;
+        border-width: 0.5px;
+        opacity: 1;
+        background: #ffffff;
+        border: 0.5px solid #e1e4ea;
+        border: none;
+        box-shadow: 0px 1px 2px rgba(10, 13, 20, 0.03);
+        /* display: grid; */
+        border-radius: 8px;
+        margin-bottom: 10px;
+      }
+
+      #user-name {
+        font-family: "Manrope";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+        display: flex;
+        align-items: center;
+        letter-spacing: -0.005em;
+        font-feature-settings: "calt" off, "liga" off;
+        color: #060606;
+      }
+      /* #user-position-ll {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  font-feature-settings: "calt" off, "liga" off;
+  color: #525866;
+  margin-bottom: 5px;
+  width: 16vw;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+} */
+
+      #user-position-ll {
+        font-family: "Manrope";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 16px;
+        font-feature-settings: "calt" off, "liga" off;
+        color: #525866;
+        margin-bottom: 5px;
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 80%;
+      }
+      #dragIconLLIcon {
+        width: 22px;
+        height: 26px;
+        position: relative;
+        /* background-color: rgb(148, 148, 226); */
+        cursor: grab;
+        padding: 0px;
+        max-width: 28px;
+      }
+      .minimize-container {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .image-con {
+        display: flex;
+        align-items: center;
+      }
+      .img-sub {
+        text-align: left;
+        margin-left: 10px !important;
+      }
+
+      #user-active-time {
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      #user-tags > div > div {
+        font-size: 11px;
+        color: #0d4e60 !important;
+        margin: 5px 2px;
+        padding: 0px 5px;
+        display: inline-block;
+        font-weight: 400 !important;
+        line-height: 22px;
+        background: #dfeff7 !important;
+        border-radius: 0px !important;
+        border: none !important;
+        text-transform: UPPERCASE !important;
+        font-family: "IBM Plex Mono", monospace !important;
+      }
+      #user-tags {
+        position: relative;
+        word-wrap: break-word;
+        white-space: normal;
+        height: auto;
+        font-size: 12px;
+        color: #050e15;
+        font-family: "Manrope" !important;
+        padding-top: 12px;
+        padding-right: 16px;
+        padding-bottom: 12px;
+        padding-left: 16px;
+        margin: 5px 0px;
+        text-align: left;
+      }
+      #user-tags > div:first-child {
+        color: #aaa;
+        font-family: Manrope;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 12px;
+        line-height: 18px;
+        letter-spacing: 0px;
+        vertical-align: middle;
+      }
+
+      #user-tags > div:nth-child(2) {
+        letter-spacing: 0%;
+        vertical-align: middle;
+        margin-top: 3px;
+        font-family: "Manrope";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 18px;
+        display: flex;
+        align-items: center;
+        color: #2b303b;
+      }
+      .stripe-loader {
+        animation-duration: 5s;
+        animation-fill-mode: forwards;
+        animation-iteration-count: infinite;
+        animation-name: placeHolderShimmer;
+        animation-timing-function: linear;
+        background-color: #f6f7f8;
+        background: linear-gradient(
+          to right,
+          #eeeeee 8%,
+          #bbbbbb 18%,
+          #eeeeee 33%
+        );
+        height: 8px;
+        position: relative;
+        margin: 5px;
+        border-radius: 5px;
+      }
+      @keyframes moveStripe {
+        0% {
+          background-position: -800px 0;
+        }
+        100% {
+          background-position: 800px 0;
+        }
+      }
+      .Previous-actions-header-ll {
+        font-family: "Manrope";
+        font-style: normal;
+        font-weight: 600;
+        margin-left: 2px;
+        line-height: 16px;
+        display: flex;
+        align-items: center;
+        color: #525866;
+        font-size: 14px;
+      }
+
+      .previous-actions-container {
+        display: flex;
+        gap: 12px;
+        margin-top: 12px;
+      }
+
+      .previous-action-item {
+        transition: all 0.2s ease;
+        cursor: pointer;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px;
+        gap: 6px;
+        background: #fafbfc;
+        border: 0.5px solid #e1e4ea;
+        border-radius: 6px;
+        flex: none;
+        order: 0;
+        flex-grow: 1;
+        width: 49%;
+      }
+
+      .previous-action-item:hover {
+        background-color: #eef3f8;
+        border-color: #d1d9e0;
+      }
+
+      .previous-action-title {
+        font-family: "Manrope";
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 16px;
+        color: #2b303b;
+
+        text-align: start;
+      }
+      .previous-action-subtitle {
+        font-size: 11px;
+        color: #717784;
+        text-align: start;
+        font-family: "Manrope";
+        font-style: normal;
+        font-weight: 400;
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* Limit to 2 lines */
+        -webkit-box-orient: vertical;
+        overflow: hidden; /* Hide extra text */
+        text-overflow: ellipsis; /* Show "..." */
+        line-height: 1.4; /* Adjust spacing between lines */
+        max-height: calc(1.4em * 2); /* Keep height consistent with two lines */
+      }
+
+      .profile-footer-ll {
+        position: absolute;
+        bottom: 60px; /* Changed from 30px to account for input height + padding */
+        max-height: calc(
+          50% - 30px
+        ); /* Adjusted to ensure it doesn't overlap */
+        overflow-y: auto;
+        width: calc(100% - 20px); /* Account for padding */
+        margin: 0 10px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .profile-footer-ll::-webkit-scrollbar {
+        display: none;
+      }
+      .header-help-ll {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+        font-family: "IBM Plex Mono" !important;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 20px;
+        letter-spacing: -0.04em;
+        font-feature-settings: "calt" off, "liga" off;
+        background: linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.16) 0%,
+            rgba(255, 255, 255, 0) 100%
+          ),
+          #0d4e60;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-left: 2px;
+        margin-bottom: 5px;
+      }
+      #selfWrittenBtnLL,
+      #writeCommentBtnLL,
+      #searchWebBtnLL,
+      .canvas-item-ll {
+        text-align: center;
+        font-weight: 500;
+        font-family: "Manrope", sans-serif !important;
+        font-size: 14px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 5px 8px;
+        gap: 8px;
+        background: #ffffff;
+        text-align: start;
+        justify-content: start;
+        color: #313133;
+        transition: all 0.3s ease-in-out 0s;
+        cursor: pointer;
+        outline: none;
+        position: relative;
+        border: none;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      #selfWrittenBtnLL:hover svg,
+      #writeCommentBtnLL:hover svg,
+      #searchWebBtnLL:hover svg,
+      .canvas-item-ll:hover svg {
+        animation: shakeAnimation 0.5s ease-in-out 2;
+      }
+
+      .fetching svg {
+        animation: shakeAnimation 0.5s ease-in-out 7;
+      }
+
+      /* Shake Animation */
+      @keyframes shakeAnimation {
+        0% {
+          transform: rotate(0deg);
+        }
+        25% {
+          transform: rotate(-8deg);
+        }
+        50% {
+          transform: rotate(8deg);
+        }
+        75% {
+          transform: rotate(-8deg);
+        }
+        100% {
+          transform: rotate(0deg);
+        }
+      }
+      .ll-canvas-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: background 0.3s;
+        cursor: pointer;
+      }
+
+      .ll-canvas-main {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        transition: background 0.2s ease;
+      }
+
+      .ll-canvas-left {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .ll-canvas-title {
+        font-family: "Manrope" !important;
+        font-size: 14px;
+        font-weight: 500;
+      }
+      .ll-canvas-right {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        position: relative;
+      }
+
+      .ll-star {
+        font-size: 18px;
+        cursor: pointer;
+        color: gray;
+        transition: color 0.3s;
+      }
+
+      .ll-star.active {
+        color: #408eb5;
+      }
+
+      .ll-dots {
+        font-size: 18px;
+        cursor: pointer;
+        color: #444;
+        user-select: none;
+      }
+
+      .ll-dropdown {
+        position: absolute;
+        top: 25px;
+        right: 0;
+        background: white;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        display: none;
+        min-width: 100px;
+        z-index: 9999;
+      }
+
+      .ll-dropdown-item {
+        font-family: "Manrope";
+        padding: 8px 12px;
+        font-size: 13px;
+        cursor: pointer;
+        font-weight: 500;
+      }
+
+      .ll-dropdown-item:hover {
+        background: #f0f0f0;
+        border-radius: 4px;
+      }
+
+      .ll-category-header {
+        font-family: "Manrope";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 11px;
+        line-height: 14px;
+        color: #717784;
+        margin: 0px 0px 0px 10px;
+        text-align: start;
+        padding: 0px;
+      }
+
+      .ll-create-canvas-btn {
+        align-items: center;
+        padding: 8px 20px;
+        gap: 4px;
+        background: linear-gradient(0deg, #e7f5ff, #e7f5ff), #ffffff;
+        border-top: 0.5px solid #cacfd8;
+        border: none;
+        font-family: "Manrope";
+        font-style: normal;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 20px;
+        display: flex;
+        font-feature-settings: "calt" off, "liga" off;
+        color: #2b303b;
+        /* display: none; */
+        width: 100%;
+        border-radius: 0px 0px 8px 8px;
+      }
+
+      .ll-create-canvas-btn:hover {
+        background: #f5f5f5;
+      }
+
+      .ll-canvas-main:hover {
+        background: #f8f9fa;
+        border-radius: 5px;
+      }
+
+      /* Hide star and dots by default */
+      .ll-canvas-right .ll-star,
+      .ll-canvas-right .ll-dots {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.2s ease, visibility 0.2s ease;
+      }
+
+      /* Show them when hovering on the entire canvas main area */
+      .ll-canvas-main:hover .ll-star,
+      .ll-canvas-main:hover .ll-dots {
+        opacity: 1;
+        visibility: visible;
+      }
+      .ll-category-section {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="profile-sub-container" id="lead-container">
+      <div class="header-card-ll">
+        <img
+          id="lead-icon-ll"
+          src=""
+          alt="Lead Icon"
+          style="width: 80px; height: auto"
+        />
+        <div id="dragIconLLIcon" class="dragIconLL-icon">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6.75098 8.625C6.75098 8.8475 6.685 9.06501 6.56138 9.25002C6.43776 9.43502 6.26206 9.57922 6.0565 9.66437C5.85093 9.74951 5.62473 9.77179 5.4065 9.72838C5.18827 9.68498 4.98782 9.57783 4.83048 9.4205C4.67315 9.26316 4.566 9.06271 4.52259 8.84448C4.47919 8.62625 4.50146 8.40005 4.58661 8.19448C4.67176 7.98891 4.81596 7.81321 5.00096 7.6896C5.18597 7.56598 5.40347 7.5 5.62598 7.5C5.92435 7.5 6.21049 7.61853 6.42147 7.82951C6.63245 8.04048 6.75098 8.32663 6.75098 8.625ZM12.001 7.5C11.7785 7.5 11.561 7.56598 11.376 7.6896C11.191 7.81321 11.0468 7.98891 10.9616 8.19448C10.8765 8.40005 10.8542 8.62625 10.8976 8.84448C10.941 9.06271 11.0481 9.26316 11.2055 9.4205C11.3628 9.57783 11.5633 9.68498 11.7815 9.72838C11.9997 9.77179 12.2259 9.74951 12.4315 9.66437C12.6371 9.57922 12.8128 9.43502 12.9364 9.25002C13.06 9.06501 13.126 8.8475 13.126 8.625C13.126 8.32663 13.0075 8.04048 12.7965 7.82951C12.5855 7.61853 12.2993 7.5 12.001 7.5ZM18.376 9.75C18.5985 9.75 18.816 9.68402 19.001 9.5604C19.186 9.43679 19.3302 9.26109 19.4153 9.05552C19.5005 8.84995 19.5228 8.62375 19.4794 8.40552C19.436 8.1873 19.3288 7.98684 19.1715 7.82951C19.0141 7.67217 18.8137 7.56503 18.5955 7.52162C18.3772 7.47821 18.151 7.50049 17.9455 7.58564C17.7399 7.67078 17.5642 7.81498 17.4406 7.99998C17.317 8.18499 17.251 8.4025 17.251 8.625C17.251 8.92337 17.3695 9.20952 17.5805 9.4205C17.7915 9.63147 18.0776 9.75 18.376 9.75ZM5.62598 14.25C5.40347 14.25 5.18597 14.316 5.00096 14.4396C4.81596 14.5632 4.67176 14.7389 4.58661 14.9445C4.50146 15.15 4.47919 15.3762 4.52259 15.5945C4.566 15.8127 4.67315 16.0132 4.83048 16.1705C4.98782 16.3278 5.18827 16.435 5.4065 16.4784C5.62473 16.5218 5.85093 16.4995 6.0565 16.4144C6.26206 16.3292 6.43776 16.185 6.56138 16C6.685 15.815 6.75098 15.5975 6.75098 15.375C6.75098 15.0766 6.63245 14.7905 6.42147 14.5795C6.21049 14.3685 5.92435 14.25 5.62598 14.25ZM12.001 14.25C11.7785 14.25 11.561 14.316 11.376 14.4396C11.191 14.5632 11.0468 14.7389 10.9616 14.9445C10.8765 15.15 10.8542 15.3762 10.8976 15.5945C10.941 15.8127 11.0481 16.0132 11.2055 16.1705C11.3628 16.3278 11.5633 16.435 11.7815 16.4784C11.9997 16.5218 12.2259 16.4995 12.4315 16.4144C12.6371 16.3292 12.8128 16.185 12.9364 16C13.06 15.815 13.126 15.5975 13.126 15.375C13.126 15.0766 13.0075 14.7905 12.7965 14.5795C12.5855 14.3685 12.2993 14.25 12.001 14.25ZM18.376 14.25C18.1535 14.25 17.936 14.316 17.751 14.4396C17.566 14.5632 17.4218 14.7389 17.3366 14.9445C17.2515 15.15 17.2292 15.3762 17.2726 15.5945C17.316 15.8127 17.4231 16.0132 17.5805 16.1705C17.7378 16.3278 17.9383 16.435 18.1565 16.4784C18.3747 16.5218 18.6009 16.4995 18.8065 16.4144C19.0121 16.3292 19.1878 16.185 19.3114 16C19.435 15.815 19.501 15.5975 19.501 15.375C19.501 15.0766 19.3824 14.7905 19.1715 14.5795C18.9605 14.3685 18.6743 14.25 18.376 14.25Z"
+              fill="#383E44"
+            />
+          </svg>
+        </div>
+        <div class="minimize-container">
+          <div id="settingIcon" style="display: flex; align-items: center">
+            <svg
+              width="21"
+              height="20"
+              viewBox="0 0 21 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10.4512 13.125C12.1771 13.125 13.5762 11.7259 13.5762 10C13.5762 8.27411 12.1771 6.875 10.4512 6.875C8.72528 6.875 7.32617 8.27411 7.32617 10C7.32617 11.7259 8.72528 13.125 10.4512 13.125Z"
+                stroke="#717784"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M3.68809 13.9135C3.34275 13.3187 3.07819 12.6805 2.90137 12.0158L4.2123 10.3752C4.19746 10.1244 4.19746 9.87289 4.2123 9.62207L2.90215 7.98145C3.07866 7.31666 3.34269 6.67827 3.6873 6.08301L5.77402 5.84863C5.94066 5.66089 6.11832 5.48324 6.30605 5.3166L6.54043 3.23066C7.13483 2.88769 7.77219 2.62524 8.43574 2.4502L10.0764 3.76113C10.3272 3.74629 10.5787 3.74629 10.8295 3.76113L12.4701 2.45098C13.1349 2.62749 13.7733 2.89152 14.3686 3.23613L14.6029 5.32285C14.7907 5.48949 14.9683 5.66714 15.135 5.85488L17.2209 6.08926C17.5662 6.68407 17.8308 7.32224 18.0076 7.98691L16.6967 9.62754C16.7115 9.87836 16.7115 10.1298 16.6967 10.3807L18.0068 12.0213C17.8316 12.6859 17.5688 13.3243 17.2256 13.9197L15.1389 14.1541C14.9722 14.3418 14.7946 14.5195 14.6068 14.6861L14.3725 16.7721C13.7776 17.1174 13.1395 17.382 12.4748 17.5588L10.8342 16.2479C10.5834 16.2627 10.3319 16.2627 10.0811 16.2479L8.44043 17.558C7.77584 17.3827 7.13746 17.12 6.54199 16.7768L6.30762 14.69C6.11988 14.5234 5.94222 14.3457 5.77559 14.158L3.68809 13.9135Z"
+                stroke="#717784"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <div id="centerize-ll" style="display: flex; align-items: center">
+            <svg
+              width="21"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M17 7L7 17"
+                stroke="#717784"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M15.125 17H7V8.875"
+                stroke="#717784"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <div id="minimize-ll" style="display: flex; align-items: center">
+            <svg
+              width="21"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10.0001 8.93906L13.7126 5.22656L14.7731 6.28706L11.0606 9.99956L14.7731 13.7121L13.7126 14.7726L10.0001 11.0601L6.28755 14.7726L5.22705 13.7121L8.93955 9.99956L5.22705 6.28706L6.28755 5.22656L10.0001 8.93906Z"
+                fill="#717784"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-sub-container-2">
+        <div class="profile-content-container" id="profile-content-container">
+          <div class="user-info-ll">
+            <div class="image-con" id="name-time-container">
+              <img id="user-img" alt="User" />
+              <div class="img-sub" style="width: 100%">
+                <div id="user-name"></div>
+                <div id="user-position-ll"></div>
+              </div>
+            </div>
+            <div id="user-active-time-container">
+              <div id="time-zone-ll"></div>
+              <div id="user-active-time"></div>
+            </div>
+            <div
+              style="
+                position: absolute;
+                width: 92.5px;
+                height: 128.75px;
+                left: calc(50% - 92.5px / 2 + 139.92px);
+                top: 43px;
+
+                background: rgba(255, 255, 255, 0.47);
+                filter: blur(12.9383px);
+                transform: rotate(26.53deg);
+
+                /* Inside auto layout */
+                flex: none;
+                order: 0;
+                flex-grow: 0;
+                z-index: 0;
+              "
+            ></div>
+          </div>
+          <div id="user-tags" style="display: none">
+            <div class="stripe-loader"></div>
+            <div class="stripe-loader"></div>
+          </div>
+        </div>
+        <div
+          class="float-content-container"
+          style="margin: 20px"
+          id="float-content-container"
+        >
+          <div
+            id="user-message-ll"
+            style="
+              font-family: 'Manrope';
+              font-style: normal;
+              font-weight: 600;
+              font-size: 18px;
+              line-height: 28px;
+              display: flex;
+              align-items: center;
+              color: #0e121b;
+              justify-content: center;
+            "
+          >
+            Good Morning, Vineeth
+          </div>
+          <div
+            style="
+              font-family: 'Manrope';
+              font-style: normal;
+              font-weight: 600;
+              font-size: 12px;
+              line-height: 16px;
+              letter-spacing: -0.01em;
+              color: #717784;
+            "
+          >
+            What do you want to do with Lead Labs?
+          </div>
+        </div>
+        <div id="Previous-actions-cantainer-ll" style="display: none">
+          <div
+            class="Previous-actions-header-ll"
+            id="Previous-actions-header-ll"
+          >
+            Previous actions
+          </div>
+          <div
+            id="Previous-actions-ll"
+            class="previous-actions-container"
+          ></div>
+        </div>
+      </div>
+
+      <div class="profile-footer-ll" id="profile-footer-ll">
+        <div class="header-help-ll" id="header-help-ll">
+          How can LeadLabs help you today?
+        </div>
+        <div id="button-container-ll">
+          <button id="selfWrittenBtnLL">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M5.5 14.5H10.5"
+                stroke="#408EB5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M4.91883 10.437C4.32443 9.97268 3.84299 9.37969 3.51067 8.70259C3.17834 8.02549 3.00377 7.28189 3.00008 6.52764C2.98508 3.81764 5.17008 1.56201 7.87945 1.49951C8.92946 1.47408 9.96081 1.77995 10.8272 2.37373C11.6935 2.9675 12.3509 3.81903 12.7061 4.80748C13.0612 5.79594 13.096 6.87113 12.8056 7.8805C12.5152 8.88987 11.9143 9.78216 11.0882 10.4308C10.906 10.572 10.7583 10.753 10.6564 10.9598C10.5545 11.1666 10.5011 11.3939 10.5001 11.6245V11.9995C10.5001 12.1321 10.4474 12.2593 10.3536 12.3531C10.2599 12.4468 10.1327 12.4995 10.0001 12.4995H6.00008C5.86747 12.4995 5.74029 12.4468 5.64652 12.3531C5.55276 12.2593 5.50008 12.1321 5.50008 11.9995V11.6245C5.49984 11.3954 5.44736 11.1694 5.34664 10.9636C5.24592 10.7578 5.09961 10.5777 4.91883 10.437Z"
+                stroke="#408EB5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M8.5 3.5C9.75 3.71062 10.7881 4.75 11 6"
+                stroke="#408EB5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <span id="buttonText" style="font-family: 'Manrope', sans-serif"
+              >View insights</span
+            >
+          </button>
+
+          <button id="profileBtnLL" style="display: none" class="fixedborderll">
+            Analyse
+          </button>
+
+          <button id="writeCommentBtnLL">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6 6.5H10"
+                stroke="#408EB5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M6 8.5H10"
+                stroke="#408EB5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M6.56687 12L7.56687 13.75C7.61057 13.8267 7.67377 13.8904 7.75007 13.9347C7.82636 13.979 7.91302 14.0024 8.00125 14.0024C8.08948 14.0024 8.17614 13.979 8.25243 13.9347C8.32873 13.8904 8.39193 13.8267 8.43563 13.75L9.43563 12H13.5C13.6326 12 13.7598 11.9473 13.8536 11.8536C13.9473 11.7598 14 11.6326 14 11.5V3.5C14 3.36739 13.9473 3.24021 13.8536 3.14645C13.7598 3.05268 13.6326 3 13.5 3H2.5C2.36739 3 2.24021 3.05268 2.14645 3.14645C2.05268 3.24021 2 3.36739 2 3.5V11.5C2 11.6326 2.05268 11.7598 2.14645 11.8536C2.24021 11.9473 2.36739 12 2.5 12H6.56687Z"
+                stroke="#408EB5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <span
+              id="commentbuttonText"
+              style="font-family: 'Manrope', sans-serif"
+              >Leave a thoughtful comment</span
+            >
+          </button>
+
+          <button id="searchWebBtnLL">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7 12C9.76142 12 12 9.76142 12 7C12 4.23858 9.76142 2 7 2C4.23858 2 2 4.23858 2 7C2 9.76142 4.23858 12 7 12Z"
+                stroke="#408EB5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M10.5356 10.5352L14 13.9995"
+                stroke="#408EB5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <span style="font-family: 'Manrope', sans-serif"
+              >Search the Web</span
+            >
+          </button>
+        </div>
+        <div
+          style="
+            font-family: 'Manrope', sans-serif;
+            display: flex;
+            flex-direction: column;
+          "
+        >
+          <div id="analyseYourtext"></div>
+          <button id="analyseYoursefltBtnLL">
+            <span style="font-family: 'Manrope', sans-serif"
+              >Analyse yourself</span
+            >
+          </button>
+          <div id="login-text"></div>
+        </div>
+        <div
+          style="
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 16px;
+            display: flex;
+            align-items: center;
+            color: #2b303b;
+            margin-bottom: 10px;
+            display: none;
+          "
+          id="no-action-ll"
+        >
+          Action not available.
+        </div>
+        <div id="getCanvas" style="width: 99%">
+          <div class="stripe-loader"></div>
+          <div class="stripe-loader"></div>
+        </div>
+      </div>
+      <div
+        id="canvas-list-bigCard"
+        style="
+          box-sizing: border-box;
+          display: none;
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 0px;
+          isolation: isolate;
+          background: rgb(255, 255, 255);
+          border: 0.5px solid rgb(225, 228, 234);
+          box-shadow: rgba(24, 39, 75, 0.12) 0px 6px 8px -6px,
+            rgba(24, 39, 75, 0.08) 0px 8px 16px -6px;
+          border-radius: 8px;
+          flex: 0 0 auto;
+          order: 2;
+          z-index: 2;
+          position: absolute;
+          bottom: 60px;
+          max-height: calc(80% - 30px);
+          overflow-y: auto;
+          width: calc(100% - 20px);
+          margin: 0 10px;
+          scrollbar-width: none;
+        "
+      >
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 5px 12px;
+            box-sizing: border-box;
+          "
+        >
+          <div
+            style="
+              font-family: 'Manrope';
+              font-style: normal;
+              font-weight: 600;
+              font-size: 12px;
+              line-height: 16px;
+              font-feature-settings: 'calt' off, 'liga' off;
+              color: #525866;
+            "
+          >
+            Choose an action to run canvas
+          </div>
+          <div id="close-canvas-card-ll" style="cursor: pointer">
+            <svg
+              width="21"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10.0001 8.93906L13.7126 5.22656L14.7731 6.28706L11.0606 9.99956L14.7731 13.7121L13.7126 14.7726L10.0001 11.0601L6.28755 14.7726L5.22705 13.7121L8.93955 9.99956L5.22705 6.28706L6.28755 5.22656L10.0001 8.93906Z"
+                fill="#717784"
+              ></path>
+            </svg>
+          </div>
+        </div>
+        <div
+          style="
+            width: 100%;
+
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 12px;
+            gap: 12px;
+            isolation: isolate;
+            background: #ffffff;
+            border-radius: 0px;
+
+            flex: none;
+            order: 0;
+            align-self: stretch;
+            flex-grow: 0;
+          "
+          id="canvas-list-container-ll"
+        ></div>
+        <div
+          class="ll-create-canvas-btn"
+          id="ll-create-canvas-center-btn"
+          style="display: flex; box-sizing: border-box"
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14Z"
+              stroke="#2B303B"
+              stroke-width="0.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+            <path
+              d="M5.5 8H10.5"
+              stroke="#2B303B"
+              stroke-width="0.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+            <path
+              d="M8 5.5V10.5"
+              stroke="#2B303B"
+              stroke-width="0.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </svg>
+          Create Canvas
+        </div>
+      </div>
+      <div
+        id="input-container-ll"
+        style="
+          position: absolute;
+          width: 100%;
+          text-align: center;
+          bottom: 1px;
+          z-index: 10;
+          display: none;
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 12px;
+          gap: 10px;
+          isolation: isolate;
+          background: linear-gradient(
+            180deg,
+            rgba(237, 249, 255, 0.3) 0%,
+            #edf9ff 100%
+          );
+          border-radius: 5px;
+          box-sizing: border-box;
+        "
+      >
+        <div
+          style="
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+          "
+        >
+          <input
+            type="text"
+            id="execute-action-ll"
+            placeholder="Click here for more actions in all page"
+            style="
+              background: #ffffff;
+              box-shadow: 0px 2px 2.8px rgba(13, 78, 96, 0.12),
+                0px 0px 1.2px rgba(13, 78, 96, 0.84);
+              border-radius: 8px;
+              font-size: 14px;
+              font-family: 'Manrope', sans-serif;
+              outline: none;
+              border: none;
+              width: 100%;
+            "
+          />
+
+          <!-- SVG button on the right -->
+          <div
+            style="
+              position: absolute;
+              right: 5px;
+              width: 32px;
+              height: 32px;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              cursor: pointer;
+              transition: all 0.2s ease;
+            "
+            id="execute-action-btn"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12Z"
+                fill="#BFD0D5"
+              />
+              <mask
+                id="mask0"
+                style="mask-type: alpha"
+                maskUnits="userSpaceOnUse"
+                x="4"
+                y="4"
+                width="16"
+                height="16"
+              >
+                <g clip-path="url(#clip0)">
+                  <path
+                    d="M7.33325 10.6667L11.9999 6M11.9999 6L16.6666 10.6667M11.9999 6V18"
+                    stroke="white"
+                    stroke-width="1.33333"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </g>
+              </mask>
+              <g mask="url(#mask0)">
+                <rect x="4" y="4" width="16" height="16" fill="white" />
+              </g>
+              <defs>
+                <clipPath id="clip0">
+                  <rect
+                    width="16"
+                    height="16"
+                    fill="white"
+                    transform="translate(4 4)"
+                  />
+                </clipPath>
+              </defs>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

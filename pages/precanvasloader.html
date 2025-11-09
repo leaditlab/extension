@@ -1,0 +1,170 @@
+<style>
+  .main-item {
+    padding: 10px;
+    background-color: #fff;
+    width: 100%;
+  }
+
+  .background-masker {
+    background-color: #fff;
+    position: absolute;
+  }
+
+  .btn-divide-left {
+    top: 0;
+    left: 25%;
+    height: 100%;
+    width: 5%;
+  }
+
+  @keyframes placeHolderShimmer {
+    0% {
+      background-position: -800px 0;
+    }
+    100% {
+      background-position: 800px 0;
+    }
+  }
+
+  .animated-background {
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background-color: #f6f7f8;
+    background: linear-gradient(to right, #eeeeee 8%, #bbbbbb 18%, #e6f3fa 33%);
+    height: 50px;
+    position: relative;
+    margin-top: 20px;
+  }
+
+  .static-background {
+    background-color: #f6f7f8;
+    height: 50px;
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  .shared-dom {
+    /*   width: 800px; */
+    height: 110px;
+  }
+  .sub-rect {
+    border-radius: 100%;
+    width: 70px;
+    height: 70px;
+    float: left;
+    margin: 20px 20px 20px 0;
+  }
+  .pure-background {
+    background-color: #eee;
+  }
+
+  .css-dom:empty {
+    /*   width: 280px; */
+    height: 220px;
+    border-radius: 6px;
+    box-shadow: 0 10px 45px rgba(0, 0, 0, 0.2);
+    background-repeat: no-repeat;
+    margin-top: 20px;
+    background-image: radial-gradient(circle 16px, lightgray 99%, transparent 0),
+      linear-gradient(lightgray, lightgray),
+      linear-gradient(lightgray, lightgray),
+      linear-gradient(lightgray, lightgray),
+      linear-gradient(lightgray, lightgray), linear-gradient(#fff, #fff);
+
+    background-size: 32px 32px, 100% 32px, 180px 32px, 230px 16px, 100% 40px,
+      280px 100%;
+
+    background-position: 24px 30px, 66px 30px, 24px 90px, 24px 142px, 0 100%,
+      0 0;
+  }
+</style>
+<link
+  href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
+  rel="stylesheet"
+/>
+<link
+  href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Manrope:wght@200..800&display=swap"
+  rel="stylesheet"
+/>
+<div class="main-item">
+  <div
+    class="h5ll"
+    style="font-family: 'IBM Plex Mono'; font-size: 14px; font-weight: 550"
+  >
+    <svg
+      class="icon-inline"
+      width="12"
+      height="12"
+      viewBox="0 0 12 12"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M11 0H1C0.734784 0 0.48043 0.105357 0.292893 0.292893C0.105357 0.48043 0 0.734784 0 1V11C0 11.2652 0.105357 11.5196 0.292893 11.7071C0.48043 11.8946 0.734784 12 1 12H11C11.2652 12 11.5196 11.8946 11.7071 11.7071C11.8946 11.5196 12 11.2652 12 11V1C12 0.734784 11.8946 0.48043 11.7071 0.292893C11.5196 0.105357 11.2652 0 11 0ZM4 5.5C4 5.10444 4.1173 4.71776 4.33706 4.38886C4.55682 4.05996 4.86918 3.80362 5.23463 3.65224C5.60009 3.50087 6.00222 3.46126 6.39018 3.53843C6.77814 3.6156 7.13451 3.80608 7.41421 4.08579C7.69392 4.36549 7.8844 4.72186 7.96157 5.10982C8.03874 5.49778 7.99913 5.89991 7.84776 6.26537C7.69638 6.63082 7.44004 6.94318 7.11114 7.16294C6.78224 7.3827 6.39556 7.5 6 7.5C5.46957 7.5 4.96086 7.28929 4.58579 6.91421C4.21071 6.53914 4 6.03043 4 5.5ZM2.29187 11C2.54774 10.3701 2.95909 9.81532 3.4875 9.3875C4.19895 8.81319 5.08568 8.49995 6 8.49995C6.91432 8.49995 7.80105 8.81319 8.5125 9.3875C9.04091 9.81532 9.45226 10.3701 9.70813 11H2.29187ZM11 11H10.7706C10.5483 10.2923 10.1711 9.643 9.66645 9.09931C9.16179 8.55562 8.54235 8.1312 7.85312 7.85688C8.34379 7.47147 8.70208 6.94267 8.87812 6.34409C9.05415 5.74551 9.03918 5.10693 8.83528 4.51726C8.63138 3.92759 8.24871 3.41616 7.74052 3.05417C7.23233 2.69219 6.62393 2.49765 6 2.49765C5.37607 2.49765 4.76766 2.69219 4.25948 3.05417C3.75129 3.41616 3.36861 3.92759 3.16472 4.51726C2.96082 5.10693 2.94585 5.74551 3.12188 6.34409C3.29792 6.94267 3.65621 7.47147 4.14687 7.85688C3.45765 8.1312 2.83821 8.55562 2.33355 9.09931C1.82889 9.643 1.45169 10.2923 1.22937 11H1V1H11V11Z"
+        fill="#292E30"
+      ></path>
+    </svg>
+    Analysing profile...
+  </div>
+  <div
+    id="persona-data-loader-ll"
+    style="
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      padding: 12px;
+      gap: 10px;
+      border: 1px solid #e5e5e5;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      justify-content: space-evenly;
+    "
+  >
+    <div
+      class="profileblockll"
+      style="
+        display: flex;
+        align-items: center;
+        font-family: Manrope, sans-serif !important;
+        font-size: 14px;
+        font-weight: 550;
+        color: #292e30;
+      "
+    >
+      <img src="" alt="profile image" id="user-img-ll" />
+      <div id="user-name-ll"></div>
+    </div>
+    <div
+      class="profileblockll"
+      style="
+        display: flex;
+        align-items: center;
+        font-family: Manrope, sans-serif !important;
+        font-size: 14px;
+        font-weight: 550;
+        color: #292e30;
+      "
+    >
+      <img src="" alt="profile image" id="company-img-ll" />
+      <div id="company-name-ll"></div>
+    </div>
+  </div>
+  <div style="margin-top: 50px; text-align: center">
+    <span id="loaderTextLL" style="color: #222222" class="font-family-ll">
+      Generating...
+    </span>
+  </div>
+
+  <div class="animated-background">
+    <div class="background-masker btn-divide-left"></div>
+  </div>
+  <div class="animated-background">
+    <div class="background-masker btn-divide-left"></div>
+  </div>
+  <div class="animated-background">
+    <div class="background-masker btn-divide-left"></div>
+  </div>
+</div>

@@ -1,0 +1,353 @@
+<style>
+  .header {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .brand-icon {
+    width: 32px;
+    height: 32px;
+    background: #0ea5e9;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .brand-icon i {
+    width: 16px;
+    height: 16px;
+    color: white;
+  }
+
+  .brand-text {
+    font-size: 20px;
+    font-weight: 600;
+    color: #0ea5e9;
+    letter-spacing: 0.05em;
+  }
+
+  .quote {
+    font-style: normal;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 1.2px;
+    line-height: 32px;
+    text-align: center;
+    font-feature-settings: "calt" off, "liga" off;
+    color: #0d4e60;
+    font-family: "Manrope", sans-serif;
+  }
+
+  .quote-author {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 32px;
+    text-align: center;
+    font-feature-settings: "calt" off, "liga" off;
+    color: #0d4e60;
+    font-family: "Manrope", sans-serif;
+  }
+
+  /* Cards container */
+  .cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* Card styles */
+  .card {
+    backdrop-filter: blur(12px);
+    background: #e6f3fa;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  /* .card-content {
+    padding: 5px;
+  } */
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+  }
+
+  .card-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    font-family: Manrope, sans-serif !important;
+    font-size: 14px;
+    font-weight: 600;
+    color: #334155;
+  }
+
+  .card-icon {
+    width: 32px;
+    height: 32px;
+    background: rgba(14, 165, 233, 0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-icon i {
+    width: 16px;
+    height: 16px;
+    color: #0ea5e9;
+  }
+
+  .card-title span {
+    font-weight: 500;
+    color: #334155;
+    font-family: Manrope, sans-serif !important;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  /* Subtasks styles */
+  .subtasks {
+    margin-left: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .subtask {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #64748b;
+  }
+
+  .subtask.completed i {
+    width: 16px;
+    height: 16px;
+    color: #10b981;
+  }
+
+  .subtask.in-progress .loading-circle {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #e2e8f0;
+    border-top: 2px solid #64748b;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  .expand-btn {
+    font-size: 12px;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+  .canvas-result {
+    padding: 8px 0;
+  }
+  .loading-p-circle {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #e2e8f0;
+    border-top: 2px solid #64748b;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  /* Animations */
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  .preview-steps {
+    padding: 10px;
+  }
+  #header-image {
+    /* height: 160px; */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+  }
+
+  #header-image::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  #header-image blockquote,
+  #header-image .quote-author {
+    z-index: 1;
+    position: relative;
+  }
+  .loader-line-ll {
+    width: 2px;
+    height: 10px;
+    margin-left: 4px;
+    margin-top: 0px;
+    background: rgb(204, 204, 204);
+  }
+  .step-subtitle-p {
+    margin-bottom: 4px;
+    color: #8a9799;
+    margin-left: 15px;
+    font-size: 13px;
+    font-family: Manrope, sans-serif !important;
+  }
+  .profileblockll {
+    display: flex;
+    align-items: center;
+    font-family: Manrope, sans-serif !important;
+    font-size: 14px;
+    font-weight: 550;
+    color: #292e30;
+  }
+  .h5ll {
+    font-size: 14px;
+    background-color: #fff5d2;
+    color: #292e30;
+    font-family: "IBM Plex Mono", monospace !important;
+    display: inline-block;
+    padding: 2px 6px;
+    line-height: 1.5;
+    margin: 13px 0px;
+    border-radius: 4px;
+  }
+</style>
+<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
+  rel="stylesheet"
+/>
+<link
+  href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Manrope:wght@200..800&display=swap"
+  rel="stylesheet"
+/>
+<div>
+  <div
+    style="
+      text-align: left;
+      margin: px 0px;
+      border-top: 0.5px solid rgb(229, 229, 229);
+      border-bottom: 0.5px solid rgb(229, 229, 229);
+      letter-spacing: 0.01em;
+      color: rgb(60, 67, 73);
+      font-weight: 500;
+      font-size: 13px;
+      padding-left: 10px;
+      display: flex;
+    "
+    id="canvas-header"
+  >
+    <span
+      id="main-back-float-canvas-ll"
+      style="cursor: pointer; display: flex; align-items: center; gap: 5px"
+      ><svg
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M13.5 8H2.5"
+          stroke="#2B303B"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M7 3.5L2.5 8L7 12.5"
+          stroke="#2B303B"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+      Home /</span
+    ><span id="user-name-canvas-float-ll" style="cursor: pointer"></span
+    ><span id="page-float-header-text">/ Canvas</span>
+  </div>
+  <div
+    style="
+      text-align: left;
+      margin: px 0px;
+      border-top: 0.5px solid rgb(229, 229, 229);
+      border-bottom: 0.5px solid rgb(229, 229, 229);
+      letter-spacing: 0.01em;
+      color: rgb(60, 67, 73);
+      font-weight: 500;
+      font-size: 13px;
+      padding-left: 10px;
+    "
+    id="canvas-run-date"
+  ></div>
+  <div class="" style="padding: 10px; margin: 10px">
+    <!-- Header -->
+    <div
+      style="display: flex; justify-content: space-between; align-items: center"
+    >
+      <div class="h5ll" style="font-weight: 550">
+        <svg
+          width="14"
+          height="13"
+          viewBox="0 0 14 13"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M13.5 6H7.5V4.5H8C8.26522 4.5 8.51957 4.39464 8.70711 4.20711C8.89464 4.01957 9 3.76522 9 3.5V1.5C9 1.23478 8.89464 0.98043 8.70711 0.792893C8.51957 0.605357 8.26522 0.5 8 0.5H6C5.73478 0.5 5.48043 0.605357 5.29289 0.792893C5.10536 0.98043 5 1.23478 5 1.5V3.5C5 3.76522 5.10536 4.01957 5.29289 4.20711C5.48043 4.39464 5.73478 4.5 6 4.5H6.5V6H0.5C0.367392 6 0.240215 6.05268 0.146447 6.14645C0.0526784 6.24021 0 6.36739 0 6.5C0 6.63261 0.0526784 6.75979 0.146447 6.85355C0.240215 6.94732 0.367392 7 0.5 7H2.5V9H2C1.73478 9 1.48043 9.10536 1.29289 9.29289C1.10536 9.48043 1 9.73478 1 10V12C1 12.2652 1.10536 12.5196 1.29289 12.7071C1.48043 12.8946 1.73478 13 2 13H4C4.26522 13 4.51957 12.8946 4.70711 12.7071C4.89464 12.5196 5 12.2652 5 12V10C5 9.73478 4.89464 9.48043 4.70711 9.29289C4.51957 9.10536 4.26522 9 4 9H3.5V7H10.5V9H10C9.73478 9 9.48043 9.10536 9.29289 9.29289C9.10536 9.48043 9 9.73478 9 10V12C9 12.2652 9.10536 12.5196 9.29289 12.7071C9.48043 12.8946 9.73478 13 10 13H12C12.2652 13 12.5196 12.8946 12.7071 12.7071C12.8946 12.5196 13 12.2652 13 12V10C13 9.73478 12.8946 9.48043 12.7071 9.29289C12.5196 9.10536 12.2652 9 12 9H11.5V7H13.5C13.6326 7 13.7598 6.94732 13.8536 6.85355C13.9473 6.75979 14 6.63261 14 6.5C14 6.36739 13.9473 6.24021 13.8536 6.14645C13.7598 6.05268 13.6326 6 13.5 6ZM6 1.5H8V3.5H6V1.5ZM4 12H2V10H4V12ZM12 12H10V10H12V12Z"
+            fill="#292E30"
+          />
+        </svg>
+        Running Canvas for
+      </div>
+      <div id="rerun-canvas">Re-run Canvas</div>
+    </div>
+
+    <div
+      id="persona-data-ll"
+      style="
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 12px;
+        gap: 10px;
+        background: #e6f3fa;
+        border-radius: 6px;
+        border-radius: 12px;
+        margin-bottom: 10px;
+        justify-content: space-evenly;
+      "
+    ></div>
+    <!-- Analysis Cards -->
+    <div class="cards-container" id="block-list-ll"></div>
+  </div>
+</div>
